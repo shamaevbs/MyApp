@@ -1,0 +1,18 @@
+<html t:type="layout" title="Hi/Lo Guess"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"  >
+
+
+
+        <p>
+            <t:actionlink t:id="start">start guessing</t:actionlink>
+        </p>
+
+
+
+        <h1>Address Book</h1>
+
+        <ul>
+            <li><t:pagelink page="address/create">Create new address</t:pagelink></li>
+        </ul>
+
+</html>
