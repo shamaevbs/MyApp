@@ -15,6 +15,6 @@
             <li><t:pagelink page="address/create">Create new address</t:pagelink></li>
         </ul>
         <t:grid source="addresses"
-                include="honorific,firstName,lastName,street1,city,state,zip,phone"/>
+                include="honorific,firstName,lastName,street1,city,state,zip, phone"/>
 
 </html>
