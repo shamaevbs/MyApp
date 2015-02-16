@@ -1,8 +1,12 @@
 package MyApp.pages;
 
+import MyApp.entities.Address;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Log;
+import org.apache.tapestry5.ioc.annotations.Inject;
+import org.hibernate.Session;
 
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -21,5 +25,11 @@ public class Index
         int target = random.nextInt(10) + 1;
         guess.setup(target);
         return guess;
+    }
+    @Inject
+    private Session session;
+    public List<Address> getAddresses()
+    {
+        return session.createCriteria(Address.class).list();
     }
 }
