@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.List;
 
 
 /**
@@ -31,7 +32,7 @@ public class Address {
     @Validate("required")
     public String lastName;
 
-    public String street1;
+    public List<Address> street1;
 
     public String street2;
     @Validate("required")
