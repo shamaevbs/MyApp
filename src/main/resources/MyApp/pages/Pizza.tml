@@ -1,7 +1,7 @@
-<html t:type="layout" title="Contact MyApp"
+<html t:type="layout" title="About MyApp"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
         >
 
-    <p>Contact MyApp ...</p>
+    <p>Pizza!!!   ...</p>
 
 </html>
