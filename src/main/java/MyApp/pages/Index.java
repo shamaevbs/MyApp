@@ -1,6 +1,6 @@
 package MyApp.pages;
 
-import MyApp.entities.Address;
+import MyApp.entities.Product;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Log;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -28,8 +28,14 @@ public class Index
     }
     @Inject
     private Session session;
-    public List<Address> getAddresses()
+    public List<Product> getProducts()
     {
-        return session.createCriteria(Address.class).list();
+        return session.createCriteria(Product.class).list();
     }
+
+
+    //public List<Address> getAddresses()
+    //{
+    //    return session.createCriteria(Address.class).list();
+    //}
 }
