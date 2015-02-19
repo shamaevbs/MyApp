@@ -1,6 +1,6 @@
 package MyApp.pages.address;
 
-import MyApp.entities.Address;
+import MyApp.entities.Product;
 import MyApp.pages.Index;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Property;
@@ -16,8 +16,11 @@ import org.hibernate.Session;
  * To change this template use File | Settings | File Templates.
  */
 public class CreateAddress {
+    //@Property
+    //private Address address;
     @Property
-    private Address address;
+    private Product product;
+
     @Inject
     private Session session;
     @InjectPage
@@ -25,8 +28,8 @@ public class CreateAddress {
     @CommitAfter
     Object onSuccess()
     {
-        session.persist(address);
-
+       // session.persist(address);
+        session.persist(product);
         return index;
     }
 

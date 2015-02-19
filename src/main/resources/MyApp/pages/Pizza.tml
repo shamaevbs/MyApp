@@ -1,7 +1,10 @@
-<html t:type="layout" title="About MyApp"
+<html t:type="layout" title="Menu"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
         >
 
-    <p>Pizza!!!   ...</p>
+
+    <h1>Pizza</h1>
+    <t:grid source="products"
+            include="price, name, specification, number"/>
 
 </html>

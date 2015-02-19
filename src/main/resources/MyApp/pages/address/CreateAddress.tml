@@ -1,9 +1,11 @@
-<html t:type="layout" title="Create New Address"
+<html t:type="layout" title="Create New Pizza"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
     <em>coming soon ...</em>
-
+    <!--
     <t:beaneditform object="address" submitlabel="message:submit-label"
         reorder="honorific,firstName,lastName,street1,street2,city,state,zip,email,phone" />
-
+     -->
+    <t:beaneditform object="product" submitlabel="message:submit-label"
+                    reorder="price, name, specification" />
 
 </html>

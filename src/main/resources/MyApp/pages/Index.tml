@@ -9,16 +9,16 @@
 
 
 
-        <h1>Address Book</h1>
+
 
         <ul>
-            <li><t:pagelink page="address/create">Create new address</t:pagelink></li>
+            <li><t:pagelink page="address/create">Create new pizza</t:pagelink></li>
         </ul>
-
+        <!--
         <h1>Pizza</h1>
         <t:grid source="products"
-                include="price, name, specification"/>
-
+                include="price, name, specification, number"/>
+         -->
 
         <!--
         <t:grid source="addresses"

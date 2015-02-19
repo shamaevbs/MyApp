@@ -33,7 +33,8 @@ public class Product {
     public String specification;
 
 
-
+    @Validate("required")
+    public String number;
    // @Validate("required")
     //public String firstName;
     //@Validate("required")

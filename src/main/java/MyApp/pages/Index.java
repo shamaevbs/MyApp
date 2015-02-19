@@ -1,12 +1,8 @@
 package MyApp.pages;
 
-import MyApp.entities.Product;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Log;
-import org.apache.tapestry5.ioc.annotations.Inject;
-import org.hibernate.Session;
 
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -26,12 +22,12 @@ public class Index
         guess.setup(target);
         return guess;
     }
-    @Inject
-    private Session session;
-    public List<Product> getProducts()
-    {
-        return session.createCriteria(Product.class).list();
-    }
+    //@Inject
+   // private Session session;
+    //public List<Product> getProducts()
+    //{
+     //   return session.createCriteria(Product.class).list();
+    //}
 
 
     //public List<Address> getAddresses()
