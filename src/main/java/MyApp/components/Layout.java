@@ -52,6 +52,6 @@ public class Layout
 
     public String[] getPageNames()
     {
-        return new String[]{"Pizza", "Index",  "About",  "Book"};
+        return new String[]{"Pizza", "Index",  "About",  "Book", "Bid"};
     }
 }

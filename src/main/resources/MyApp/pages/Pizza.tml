@@ -1,10 +1,18 @@
 <html t:type="layout" title="Menu"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter"
         >
 
 
     <h1>Pizza</h1>
-    <t:grid source="products"
-            include="price, name, specification, number"/>
+    <t:grid source="products" row="product" >
+        <p:numberCell>
 
+        <t:pagelink page="Bid" context="product.name">${product.number}   </t:pagelink>
+
+        </p:numberCell>
+<!--
+    include="price, name, specification, number"/>
+-->
+    </t:grid>
 </html>

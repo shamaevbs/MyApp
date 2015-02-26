@@ -1,6 +1,7 @@
 package MyApp.pages;
 
 import MyApp.entities.Product;
+import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.hibernate.Session;
 
@@ -16,6 +17,11 @@ import java.util.List;
 public class Pizza {
     @Inject
     private Session session;
+
+
+    @Property
+    private Product product;
+
     public List<Product> getProducts()
     {
         return session.createCriteria(Product.class).list();

@@ -21,7 +21,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NonVisual
-    public Long id;
+    public long id;
 
     @Validate("required")
     public String price;
@@ -35,6 +35,14 @@ public class Product {
 
     @Validate("required")
     public String number;
+
+    public String getNumber() { return number; }
+
+    public void setNumber(String number) { this.number = number; }
+
+    public long getId() { return id; }
+
+    public void setId(long id) { this.id = id; }
    // @Validate("required")
     //public String firstName;
     //@Validate("required")
