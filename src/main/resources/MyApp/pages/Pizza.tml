@@ -5,15 +5,15 @@
 
 
     <h1>Pizza</h1>
-    <t:grid source="products" row="product" rowsPerPage= "10"   include= "price, name, specification, number, basket">
+    <t:grid source="products" row="product" rowsPerPage= "10"   include= "price, name, specification, basket">
 
-        <p:numberCell>
+        <p:basketCell>
 
-        <t:actionlink t:id = "makeBasket"  value="product.id"    context="product.id" >${product.number} </t:actionlink>
+        <t:actionlink t:id = "makeBasket"   t:mixins="confirm" t:message="${message:confirm}" value="product.id"    context="product.id" >${product.basket} </t:actionlink>
         <!--
         <t:pagelink page="Bid" context="product.name">${product.number}   </t:pagelink>
         -->
-        </p:numberCell>
+        </p:basketCell>
 
 <!--
     include="price, name, specification, number"/>
@@ -21,5 +21,5 @@
     </t:grid>
 
 
-    <strong> In your basket: ${guessCount}</strong>
+    <strong> In your basket: ${productID}</strong>
 </html>
