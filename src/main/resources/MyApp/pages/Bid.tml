@@ -3,5 +3,6 @@
         >
 
     <p>About MyApp application ...</p>
+    <strong>Guess number ${guessCount}</strong>
 
 </html>
