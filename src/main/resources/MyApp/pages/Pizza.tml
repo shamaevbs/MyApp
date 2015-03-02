@@ -9,8 +9,7 @@
 
         <p:numberCell>
 
-        <t:actionlink t:id = "makeBasket" context="product.id">${product.number} </t:actionlink>
-
+        <t:actionlink t:id = "makeBasket"  value="product.id"    context="product.id" >${product.number} </t:actionlink>
         <!--
         <t:pagelink page="Bid" context="product.name">${product.number}   </t:pagelink>
         -->
