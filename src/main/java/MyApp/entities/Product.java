@@ -43,7 +43,10 @@ public class Product {
     public long getId() { return id; }
 
     public void setId(long id) { this.id = id; }
-   // @Validate("required")
+
+    public String basket;
+
+       // @Validate("required")
     //public String firstName;
     //@Validate("required")
     //public String lastName;
