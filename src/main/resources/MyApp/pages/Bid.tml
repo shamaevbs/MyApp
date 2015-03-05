@@ -2,7 +2,8 @@
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
         >
 
-    <strong>    In your basket: ${message}  </strong>
+    <strong>    In your basket:   </strong>
+    <strong>${message}</strong>
 
 
     <t:beaneditform object="application"  submitlabel="message:submit-label"

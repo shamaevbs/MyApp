@@ -21,30 +21,10 @@ public class Commodity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NonVisual
     public long id;
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    //@Validate("required")
     public String price;
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
-    //@Validate("required")
     public String name;
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String number;
-    public void setNumber(String number) {
-        this.number = number;
-    }
 
-    public String getNumber() { return number; }
-
-    public long getId() { return id; }
 
 
 
