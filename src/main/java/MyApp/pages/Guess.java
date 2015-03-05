@@ -40,6 +40,8 @@ public class Guess {
         }
         guessCount++;
         message = String.format("Your guess of %d is too %s.", value, value < target ? "low" : "high");
+        message = String.valueOf(value);
+
         return null;
     }
 

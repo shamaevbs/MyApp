@@ -9,7 +9,7 @@
 
         <p:basketCell>
 
-        <t:actionlink t:id = "makeBasket"   t:mixins="confirm" t:message="${message:confirm}" value="product.id"    context="product.id" >${product.basket} </t:actionlink>
+        <t:actionlink t:id = "makeBasket"    value="product.id"    context="product.id" >${product.basket} </t:actionlink>
         <!--
         <t:pagelink page="Bid" context="product.name">${product.number}   </t:pagelink>
         -->

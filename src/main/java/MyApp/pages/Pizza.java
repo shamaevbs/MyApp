@@ -22,7 +22,7 @@ public class Pizza {
     private Session session;
     @Property
     @Persist
-    private int productID;
+    private long productID;
 
     @Property
     private Product product;
@@ -40,7 +40,7 @@ public class Pizza {
     }
 
     @OnEvent(component = "makeBasket")
-     Object makeBasket( int value){
+     Object makeBasket( long value){
 
         productID = value;
         bid.setup(productID);

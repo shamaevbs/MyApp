@@ -1,7 +1,6 @@
 package MyApp.entities;
 
 import org.apache.tapestry5.beaneditor.NonVisual;
-import org.apache.tapestry5.beaneditor.Validate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,47 +21,32 @@ public class Commodity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NonVisual
     public long id;
+    public void setId(long id) {
+        this.id = id;
+    }
 
-
-
-    @Validate("required")
+    //@Validate("required")
     public String price;
+    public void setPrice(String price) {
+        this.price = price;
+    }
 
-    @Validate("required")
+    //@Validate("required")
     public String name;
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    @Validate("required")
-    public String specification;
-
-
-    @Validate("required")
     public String number;
+    public void setNumber(String number) {
+        this.number = number;
+    }
 
     public String getNumber() { return number; }
 
-    public void setNumber(String number) { this.number = number; }
-
     public long getId() { return id; }
 
-    public void setId(long id) { this.id = id; }
 
-    public String basket;
 
-    // @Validate("required")
-    //public String firstName;
-    //@Validate("required")
-    //public String lastName;
 
-    //public String street1;
-
-    //public String street2;
-    //@Validate("required")
-    //public String city;
-    //@Validate("required")
-    //public String state;
-    //@Validate("required,regexp")
-    //public String zip;
-    //@Validate("required")
-    //public String email;
-    //public String phone;
 }
