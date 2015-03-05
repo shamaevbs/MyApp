@@ -39,7 +39,10 @@ public class Bid
         if (product != null) {
             commodity = product.getName();
             //commodity[1].price = product.getPrice();
-            message = String.format(message+" "+"/n"+product.getPrice()+ " "+  product.getName() );
+            if (message==null){
+                message ="";
+            }
+            message = String.format(message+" "+product.getPrice()+ " "+  product.getName()+"," );
             //message= String.valueOf(0);
         }
     }

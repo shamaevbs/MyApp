@@ -3,7 +3,7 @@
         >
 
     <strong>    In your basket:   </strong>
-    <strong>${message}</strong>
+    <p>${message}</p>
 
 
     <t:beaneditform object="application"  submitlabel="message:submit-label"
