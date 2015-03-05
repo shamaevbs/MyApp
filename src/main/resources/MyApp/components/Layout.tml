@@ -28,11 +28,11 @@ Description: A Web 2.0 design with fluid width suitable for blogs and small webs
                 </h1>
             </div>
             <div class="menu">
-                    <table>
-                        <tr t:type="loop" source="pageNames" value="pageName" class="prop:classForPageName">
-                        <td><t:pagelink page="prop:pageName">${pageName}</t:pagelink></td>
-                    </tr>
-                </table>
+                <ul>
+                    <li t:type="loop" source="pageNames" value="pageName" class="prop:classForPageName">
+                        <t:pagelink page="prop:pageName">${pageName}</t:pagelink>
+                    </li>
+                </ul>
             </div>
         </div>
         <!-- end header -->

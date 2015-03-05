@@ -18,7 +18,9 @@ public class Bid
 
     //@InjectPage
     @Property @Persist private long productID;
-    @Property @Persist private String name;
+    @Property @Persist private String price;
+    int j;
+    long[] a = new long[10];
 
     //private Index index;
     @CommitAfter
@@ -33,9 +35,10 @@ public class Bid
         this.productID = productID;
         //Product product = (Product) session.createCriteria(Product.class).add(Restrictions.eq("name", "a")).uniqueResult();
         Product product = (Product) session.get(Product.class, productID);
-
+        a[j] =this.productID;
+        j++;
         if (product != null) {
-            name = product.getPrice();
+            price = product.getPrice();
         }
     }
 }

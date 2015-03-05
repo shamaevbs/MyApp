@@ -23,12 +23,14 @@ public class Product {
     @NonVisual
     public long id;
 
-    public String getPrice() {
-        return price;
-    }
+
 
     @Validate("required")
     private String price;
+
+    public String getPrice() {
+        return price;
+    }
 
     @Validate("required")
     public String name;

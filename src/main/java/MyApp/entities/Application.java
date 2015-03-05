@@ -35,6 +35,6 @@ public class Application {
     @Validate("required")
     public String apartment ;
 
-    @Validate("required")
+    @Validate("required, regexp")
     public String phone;
 }

@@ -2,7 +2,7 @@
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
         >
 
-    <strong>Guess number ${productID} ${name}</strong>
+    <strong>    In your basket: ${productID} ${price} </strong>
 
     <t:beaneditform object="application" submitlabel="message:submit-label"
                     reorder=" name, street, house, apartment, phone" />
