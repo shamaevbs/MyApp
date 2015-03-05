@@ -17,7 +17,7 @@ import javax.persistence.Id;
  * To change this template use File | Settings | File Templates.
  */
 @Entity
-public class Product {
+public class Commodity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NonVisual
@@ -26,47 +26,29 @@ public class Product {
 
 
     @Validate("required")
-    private String price;
-
-    public String getPrice() {
-        return price;
-    }
-    @Validate("required")
-    private String name;
-
-    public String getName(){
-        return name;
-    }
+    public String price;
 
     @Validate("required")
-    private String specification;
+    public String name;
 
-    public String getSpecification(){
-        return specification;
-    }
+    @Validate("required")
+    public String specification;
+
 
     @Validate("required")
     public String number;
 
-    public String getNumber() {
-        return number;
-    }
+    public String getNumber() { return number; }
 
-    public void setNumber(String number) {
-        this.number = number;
-    }
+    public void setNumber(String number) { this.number = number; }
 
-    public long getId() {
-        return id;
-    }
+    public long getId() { return id; }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    public void setId(long id) { this.id = id; }
 
     public String basket;
 
-       // @Validate("required")
+    // @Validate("required")
     //public String firstName;
     //@Validate("required")
     //public String lastName;

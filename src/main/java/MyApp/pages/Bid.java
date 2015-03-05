@@ -1,6 +1,7 @@
 package MyApp.pages;
 
 import MyApp.entities.Application;
+import MyApp.entities.Commodity;
 import MyApp.entities.Product;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
@@ -17,10 +18,13 @@ public class Bid
     private Session session;
 
     //@InjectPage
+
     @Property @Persist private long productID;
-    @Property @Persist private String price;
+    @Property @Persist private Commodity pizza;//= new Commodity[10];
+
+
     int j;
-    long[] a = new long[10];
+
 
     //private Index index;
     @CommitAfter
@@ -32,13 +36,14 @@ public class Bid
 
     }
     void setup( long productID) {
+        pizza.id= productID;
         this.productID = productID;
         //Product product = (Product) session.createCriteria(Product.class).add(Restrictions.eq("name", "a")).uniqueResult();
         Product product = (Product) session.get(Product.class, productID);
-        a[j] =this.productID;
         j++;
         if (product != null) {
-            price = product.getPrice();
+            pizza.price = product.getPrice();
+            pizza.name = product.getName();
         }
     }
 }
