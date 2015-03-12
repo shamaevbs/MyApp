@@ -73,6 +73,17 @@ public class Product {
 
     //public String street1;
 
+
+
+
+
+
+
+
+
+
+
+
     //public String street2;
     //@Validate("required")
     //public String city;

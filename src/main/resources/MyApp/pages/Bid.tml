@@ -3,7 +3,17 @@
         >
 
     <strong>    In your basket:   </strong>
+
+    <!--
     <p>${message}</p>
+    -->
+
+    <t:grid source="commodities"    include= "price, name">
+
+        <!--
+            include="price, name, specification, number"/>
+        -->
+    </t:grid>
 
 
     <t:beaneditform object="application"  submitlabel="message:submit-label"
