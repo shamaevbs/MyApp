@@ -1,12 +1,15 @@
 package MyApp.pages;
 
+import MyApp.entities.Commodity;
 import MyApp.entities.Product;
+import MyApp.services.WebUser;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.List;
 
@@ -25,9 +28,14 @@ public class Pizza {
     private long productID;
 
     @Property
+    @Persist
+    private Long clientID;
+
+    @Property
     private Product product;
 
-
+    @Inject
+    WebUser webUser;
 
     public List<Product> getProducts()
     {
@@ -43,9 +51,22 @@ public class Pizza {
      Object makeBasket( long value){
 
         productID = value;
-        bid.setup(productID);
-        return null;
 
+        Product product = (Product) session.get(Product.class, productID);
+        Commodity commodity = new Commodity();
+        commodity.name = product.getName();
+        commodity.number = product.getNumber();
+        commodity.price = product.getPrice();
+        commodity.product = productID;
+        commodity.client = webUser.getUser();
+
+        Transaction transaction = session.beginTransaction();
+        session.save(commodity);
+        transaction.commit();
+
+       // bid.setup(clientID);
+
+        return null;
     }
 
 
