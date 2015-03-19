@@ -3,6 +3,7 @@ package MyApp.pages;
 import MyApp.entities.Commodity;
 import MyApp.entities.Product;
 import MyApp.services.WebUser;
+import org.apache.tapestry5.PersistenceConstants;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.OnEvent;
 import org.apache.tapestry5.annotations.Persist;
@@ -63,6 +64,7 @@ public class Pizza {
         Transaction transaction = session.beginTransaction();
         session.save(commodity);
         transaction.commit();
+        message = String.format(";");
 
        // bid.setup(clientID);
 
@@ -72,5 +74,7 @@ public class Pizza {
 
     @InjectPage
     private Bid bid;
+    @Persist(PersistenceConstants.FLASH)
+    private String message;
 
 }

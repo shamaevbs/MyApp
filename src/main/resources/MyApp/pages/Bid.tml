@@ -1,6 +1,6 @@
 <html t:type="layout" title="Корзина"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
-        >
+      xmlns:p="tapestry:parameter">
 
     <strong>    In your basket:   </strong>
 
@@ -8,7 +8,10 @@
     <p>${message}</p>
     -->
 
-    <t:grid source="commodities"    include= "price, name">
+    <t:grid source="commodities"    include= "price, name" row="commodity" add="delete">
+        <p:deletecell>
+            <t:actionlink t:id="delete"       value="commodity.id" context="commodity.id">Delete</t:actionlink>
+        </p:deletecell>
             <!--
             include="price, name, specification, number"/>
         -->
@@ -27,7 +30,7 @@
             </t:beaneditor>
 
             <div class="t-beaneditor-row">
-                <input t:type="submit" value="Save"  t:mixins="confirm" t:message="${message}" />
+                <input t:type="submit" value="Save"  t:mixins="confirm" t:message="${message:confirm}" />
                 <!--
                 <a t:type="eventlink" t:event="refresh" href="#">Refresh</a>&nbsp;
                 -->

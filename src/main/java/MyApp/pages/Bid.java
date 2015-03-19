@@ -12,6 +12,7 @@ import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
@@ -25,50 +26,46 @@ public class Bid
     @Component(id = "applicationform")
     private Form form;
 
+    @Persist(PersistenceConstants.FLASH)
+    private String message;
 
-
-    //@InjectPage
     @Property @Persist private long clientID;
-    //@Property @Persist private Commodity commodity;
     @Property @Persist private String name;
 
-
-    /*@Component(id = "personform")
-    private Form form;*/
 
     @Inject
     WebUser webUser;
 
-    @Property @Persist(PersistenceConstants.FLASH)
-    private String message;
-
-    //private Index index;
     @CommitAfter
     Object onSuccess()
     {
         session.persist(application);
         return null;
 
-
-        //message = String.format(message+" "+product.getPrice()+ " "+  product.getName()+"," );
     }
-
-
 
     public List<Commodity> getCommodities() {
         return session.createCriteria(Commodity.class).add(Restrictions.eq("client", webUser.getUser())).list();
     }
 
-    @OnEvent(component = "applicationform")
-    Object makeGuess()
-    {
 
-        message = String.format(";");
+    @OnEvent(component = "delete")
+    Object Delete( long value){
+
+
+        //Product product = (Product) session.get(Product.class, productID);
+        Commodity commodity =(Commodity) session.load(Commodity.class, value);
+        Transaction transaction = session.beginTransaction();
+        session.delete(commodity);
+        transaction.commit();
         return null;
     }
 
+
+
+
+
     void setup(long clientID) {
-        message= String.format(";");
         //this.clientID = clientID;
        /* //Product product = (Product) session.createCriteria(Product.class).add(Restrictions.eq("name", "a")).uniqueResult();
         Product product = (Product) session.get(Product.class, productID);
@@ -88,4 +85,5 @@ public class Bid
             //message= String.valueOf(0);
         }*/
     }
+
 }
