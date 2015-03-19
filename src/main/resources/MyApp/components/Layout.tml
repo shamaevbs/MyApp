@@ -22,9 +22,11 @@ Description: A Web 2.0 design with fluid width suitable for blogs and small webs
         <div class="header">
             <div class="logo">
                 <h1>
-                    <t:pagelink page="index">MyApp:MyApp</t:pagelink>
+                    <t:pagelink page="index">Pizzeria</t:pagelink>
+                    <!--
                     &nbsp;
                     version ${appVersion}
+                    -->
                 </h1>
             </div>
             <div class="menu">
@@ -32,7 +34,7 @@ Description: A Web 2.0 design with fluid width suitable for blogs and small webs
                     <li t:type="loop" source="pageNames" value="pageName" class="prop:classForPageName">
                         <t:pagelink page="prop:pageName">${pageName}</t:pagelink>
                     </li>
-                </ul>
+                </ul>l>
             </div>
         </div>
         <!-- end header -->
