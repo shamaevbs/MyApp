@@ -8,33 +8,38 @@
     <p>${message}</p>
     -->
 
-    <t:grid source="commodities"    include= "price, name, client">
+    <t:grid source="commodities"    include= "price, name">
             <!--
             include="price, name, specification, number"/>
         -->
     </t:grid>
 
-    <!--<form t:id="applicationform">
+    <form t:id="applicationform">
         <t:errors/>
 
         <div class="t-beaneditor">
-            <t:beaneditor t:id="person" object="application">[BeanEditForm here]
-                &lt;!&ndash; If optimistic locking is not needed then comment out this next bit. It works because Hidden fields are part of the submit. &ndash;&gt;
-                <p:version>
+
+            <t:beaneditor t:id="application" object="application">[BeanEditForm here]
+               <!-- <p:version>
                     <t:hidden value="application.version"/>
                 </p:version>
+                -->
             </t:beaneditor>
 
             <div class="t-beaneditor-row">
-                <input t:type="submit" value="Save"/>&nbsp;
+                <input t:type="submit" value="Save"  t:mixins="confirm" t:message="${message}" />
+                <!--
                 <a t:type="eventlink" t:event="refresh" href="#">Refresh</a>&nbsp;
+                -->
             </div>
         </div>
     </form>
 
--->
+    <!--
     <t:beaneditform object="application"  submitlabel="message:submit-label"
            reorder=" name, street, house, apartment, phone"  t:mixins="confirm" t:message="${message:confirm}" />
+
+    -->
 <!--
 <p>
    <t:actionlink  t:id="ok" t:mixins="confirm" t:message="${message:confirm}">Заказать</t:actionlink>
