@@ -11,6 +11,7 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
 
@@ -48,23 +49,44 @@ public class Pizza {
 
     }
 
+    public List<Commodity> getCommodities() {
+        return session.createCriteria(Commodity.class).add(Restrictions.eq("client", webUser.getUser())).list();
+    }
+
     @OnEvent(component = "makeBasket")
      Object makeBasket( long value){
-
         productID = value;
+        if ((session.get(Commodity.class, productID))!=null){
+            Commodity commodity =(Commodity) session.get(Commodity.class, productID);
+            commodity.amt++;
+            Transaction transaction = session.beginTransaction();
+            session.save(commodity);
+            transaction.commit();
+        }
+        else {
+            Product product = (Product) session.get(Product.class, productID);
+            Commodity commodity = new Commodity();
+            commodity.name = product.getName();
+            commodity.number = product.getNumber();
+            commodity.price = product.getPrice();
+            commodity.product = productID;
+            commodity.client = webUser.getUser();
 
-        Product product = (Product) session.get(Product.class, productID);
-        Commodity commodity = new Commodity();
-        commodity.name = product.getName();
-        commodity.number = product.getNumber();
-        commodity.price = product.getPrice();
-        commodity.product = productID;
-        commodity.client = webUser.getUser();
+            commodity.amt = 1;
 
-        Transaction transaction = session.beginTransaction();
-        session.save(commodity);
-        transaction.commit();
+            Transaction transaction = session.beginTransaction();
+            session.save(commodity);
+            transaction.commit();
+
+        }
+
+
+
+
         message = String.format(";");
+
+
+
 
        // bid.setup(clientID);
 

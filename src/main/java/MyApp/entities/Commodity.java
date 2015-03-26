@@ -27,6 +27,10 @@ public class Commodity {
     public String number;
     public long product;
     public long client;
+    public long amt;
+    //public long amt;
+
+
     //public String basket;
 
 

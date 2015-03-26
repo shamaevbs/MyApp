@@ -8,7 +8,7 @@
     <p>${message}</p>
     -->
 
-    <t:grid source="commodities"    include= "price, name" row="commodity" add="delete">
+    <t:grid source="commodities"    include= "price, name, amt" row="commodity" add="delete">
         <p:deletecell>
             <t:actionlink t:id="delete"       value="commodity.id" context="commodity.id">Delete</t:actionlink>
         </p:deletecell>
