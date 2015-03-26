@@ -4,11 +4,9 @@ import MyApp.entities.Commodity;
 import MyApp.entities.Product;
 import MyApp.services.WebUser;
 import org.apache.tapestry5.PersistenceConstants;
-import org.apache.tapestry5.annotations.InjectPage;
-import org.apache.tapestry5.annotations.OnEvent;
-import org.apache.tapestry5.annotations.Persist;
-import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.*;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.javascript.JavaScriptSupport;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -25,6 +23,8 @@ import java.util.List;
 public class Pizza {
     @Inject
     private Session session;
+
+
     @Property
     @Persist
     private long productID;
@@ -39,27 +39,43 @@ public class Pizza {
     @Inject
     WebUser webUser;
 
+    @Persist
+    private boolean showInfo;
+
+    @Inject
+    private JavaScriptSupport javaScriptSupport;
+
     public List<Product> getProducts()
     {
         return session.createCriteria(Product.class).list();
     }
-    void setup()
-    {
-        productID = 1;
 
+
+    void setShowInfo(boolean show) {
+        showInfo = show;
     }
 
-    public List<Commodity> getCommodities() {
-        return session.createCriteria(Commodity.class).add(Restrictions.eq("client", webUser.getUser())).list();
+    @AfterRender
+    void showInfo() {
+          if (showInfo) {
+              javaScriptSupport.addScript("alert('Ваша заявка принята!');");
+              showInfo = false;
+          }
     }
+
 
     @OnEvent(component = "makeBasket")
      Object makeBasket( long value){
         productID = value;
-        if ((session.get(Commodity.class, productID))!=null){
-            Commodity commodity =(Commodity) session.get(Commodity.class, productID);
-            commodity.amt++;
+        List<Commodity> commodityLst = session.createCriteria(Commodity.class)
+                .add(Restrictions.eq("product", productID))
+                .add(Restrictions.eq("client", webUser.getUser()))
+                .list();
+        if (!commodityLst.isEmpty()){
             Transaction transaction = session.beginTransaction();
+            Commodity commodity = commodityLst.get(0);
+            commodity.amt++;
+
             session.save(commodity);
             transaction.commit();
         }
@@ -77,19 +93,16 @@ public class Pizza {
             Transaction transaction = session.beginTransaction();
             session.save(commodity);
             transaction.commit();
-
         }
 
-
-
-
+        commodityLst = session.createCriteria(Commodity.class)
+                .add(Restrictions.eq("client", webUser.getUser()))
+                .list();
+        long total = 0;
+        for(Commodity commodity : commodityLst) {
+            total += Long.valueOf(commodity.price) * commodity.amt;
+        }
         message = String.format(";");
-
-
-
-
-       // bid.setup(clientID);
-
         return null;
     }
 

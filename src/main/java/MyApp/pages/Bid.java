@@ -4,10 +4,7 @@ import MyApp.entities.Application;
 import MyApp.entities.Commodity;
 import MyApp.services.WebUser;
 import org.apache.tapestry5.PersistenceConstants;
-import org.apache.tapestry5.annotations.Component;
-import org.apache.tapestry5.annotations.OnEvent;
-import org.apache.tapestry5.annotations.Persist;
-import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.*;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -23,14 +20,19 @@ public class Bid
     @Property private Commodity commodity;
     @Inject private Session session;
 
+
     @Component(id = "applicationform")
     private Form form;
 
     @Persist(PersistenceConstants.FLASH)
     private String message;
 
+    @Property @Persist private long cost;
+
     @Property @Persist private long clientID;
     @Property @Persist private String name;
+    @InjectPage
+    private Pizza mainPage;
 
 
     @Inject
@@ -40,11 +42,29 @@ public class Bid
     Object onSuccess()
     {
         session.persist(application);
+
+        mainPage.setShowInfo(true);
+        return mainPage;
+
+    }
+
+    Object onValidateFromApplicationform() {
+         return true;
+    }
+
+    Object onFailure() {
         return null;
 
     }
 
     public List<Commodity> getCommodities() {
+        List<Commodity> commodityLst = session.createCriteria(Commodity.class)
+                .add(Restrictions.eq("client", webUser.getUser()))
+                .list();
+        cost= 0;
+        for(Commodity commodity : commodityLst) {
+            cost += Long.valueOf(commodity.price) * commodity.amt;
+        }
         return session.createCriteria(Commodity.class).add(Restrictions.eq("client", webUser.getUser())).list();
     }
 
@@ -61,11 +81,52 @@ public class Bid
         return null;
     }
 
+    @OnEvent(component = "addition")
+    Object Addition( long value){
+
+
+        //Product product = (Product) session.get(Product.class, productID);
+        Commodity commodity =(Commodity) session.get(Commodity.class, value);
+        Transaction transaction = session.beginTransaction();
+
+        commodity.amt++;
+        session.save(commodity);
+        transaction.commit();
+        return null;
+    }
+
+    @OnEvent(component = "decrease")
+    Object Decrease ( long value){
+
+
+        //Product product = (Product) session.get(Product.class, productID);
+        Commodity commodity =(Commodity) session.get(Commodity.class, value);
+        Transaction transaction = session.beginTransaction();
+        if(commodity.amt>1){
+            commodity.amt--;
+            session.save(commodity);
+        }
+        else if(commodity.amt==1){
+            session.delete(commodity);
+        }
+
+        transaction.commit();
+        return null;
+    }
 
 
 
 
-    void setup(long clientID) {
+        void setup() {
+            List<Commodity> commodityLst = session.createCriteria(Commodity.class)
+                    .add(Restrictions.eq("client", webUser.getUser()))
+                    .list();
+            long total = 0;
+            for(Commodity commodity : commodityLst) {
+                total += Long.valueOf(commodity.price) * commodity.amt;
+            }
+            cost= total;
+
         //this.clientID = clientID;
        /* //Product product = (Product) session.createCriteria(Product.class).add(Restrictions.eq("name", "a")).uniqueResult();
         Product product = (Product) session.get(Product.class, productID);
@@ -85,5 +146,6 @@ public class Bid
             //message= String.valueOf(0);
         }*/
     }
+
 
 }

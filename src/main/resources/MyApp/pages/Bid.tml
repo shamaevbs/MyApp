@@ -8,10 +8,19 @@
     <p>${message}</p>
     -->
 
-    <t:grid source="commodities"    include= "price, name, amt" row="commodity" add="delete">
+    <t:grid source="commodities"    include= "price, name, amt" row="commodity" add="delete, addition, decrease ">
         <p:deletecell>
             <t:actionlink t:id="delete"       value="commodity.id" context="commodity.id">Delete</t:actionlink>
         </p:deletecell>
+
+        <p:additioncell>
+            <t:actionlink t:id="addition"      value="commodity.id" context="commodity.id">addition </t:actionlink>
+        </p:additioncell>
+
+        <p:decreasecell>
+            <t:actionlink t:id="decrease"      value="commodity.id" context="commodity.id">decrease</t:actionlink>
+        </p:decreasecell>
+
             <!--
             include="price, name, specification, number"/>
         -->
@@ -37,6 +46,8 @@
             </div>
         </div>
     </form>
+
+    <strong>    In total:${cost}   </strong>
 
     <!--
     <t:beaneditform object="application"  submitlabel="message:submit-label"
