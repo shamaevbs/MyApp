@@ -65,7 +65,10 @@ public class Bid
         for(Commodity commodity : commodityLst) {
             cost += Long.valueOf(commodity.price) * commodity.amt;
         }
-        return session.createCriteria(Commodity.class).add(Restrictions.eq("client", webUser.getUser())).list();
+        return session.createCriteria(Commodity.class)
+                .add(Restrictions.eq("client", webUser.getUser()))
+                //.add(Restrictions.eq("amt", null ))
+                .list();
     }
 
 

@@ -87,7 +87,7 @@ public class Pizza {
             commodity.price = product.getPrice();
             commodity.product = productID;
             commodity.client = webUser.getUser();
-
+            commodity.app = 0;
             commodity.amt = 1;
 
             Transaction transaction = session.beginTransaction();
