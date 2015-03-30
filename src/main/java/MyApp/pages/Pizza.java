@@ -39,6 +39,14 @@ public class Pizza {
     @Inject
     WebUser webUser;
 
+    @Property
+    @Persist
+    private long ind;
+
+    @Property
+    @Persist
+    private boolean emptyreq;
+
     @Persist
     private boolean showInfo;
 
@@ -51,14 +59,20 @@ public class Pizza {
     }
 
 
-    void setShowInfo(boolean show) {
+    void setShowInfo(boolean show, boolean emptyCom) {
+        emptyreq = emptyCom;
         showInfo = show;
     }
 
     @AfterRender
     void showInfo() {
           if (showInfo) {
-              javaScriptSupport.addScript("alert('Ваша заявка принята!');");
+              if (emptyreq){
+                  javaScriptSupport.addScript("alert('Пустая заявка не может быть принята, пожалуйста, выберите пиццу');");
+              }
+              else{
+                  javaScriptSupport.addScript("alert('Ваша заявка принята!');");
+              }
               showInfo = false;
           }
     }
@@ -67,11 +81,13 @@ public class Pizza {
     @OnEvent(component = "makeBasket")
      Object makeBasket( long value){
         productID = value;
+        ind = 1;
         List<Commodity> commodityLst = session.createCriteria(Commodity.class)
                 .add(Restrictions.eq("product", productID))
                 .add(Restrictions.eq("client", webUser.getUser()))
+                .add(Restrictions.eq("app", ind))
                 .list();
-        if (!commodityLst.isEmpty()){
+        if (!commodityLst.isEmpty()  ){
             Transaction transaction = session.beginTransaction();
             Commodity commodity = commodityLst.get(0);
             commodity.amt++;
@@ -87,7 +103,7 @@ public class Pizza {
             commodity.price = product.getPrice();
             commodity.product = productID;
             commodity.client = webUser.getUser();
-            commodity.app = 0;
+            commodity.app = 1;
             commodity.amt = 1;
 
             Transaction transaction = session.beginTransaction();

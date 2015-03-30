@@ -28,6 +28,8 @@ public class Bid
     private String message;
 
     @Property @Persist private long cost;
+    @Property @Persist private long ind;
+    @Property @Persist private boolean emptycom;
 
     @Property @Persist private long clientID;
     @Property @Persist private String name;
@@ -42,8 +44,22 @@ public class Bid
     Object onSuccess()
     {
         session.persist(application);
+        List<Commodity> commodityLst = session.createCriteria(Commodity.class)
+                .add(Restrictions.eq("client", webUser.getUser()))
+                .add(Restrictions.eq("app", ind  ))
+                .list();
+        for(Commodity commodity : commodityLst) {
+            //cost += Long.valueOf(commodity.price) * commodity.amt;
+            commodity.app = application.id;
+        }
 
-        mainPage.setShowInfo(true);
+        if(commodityLst.isEmpty()){
+            emptycom = true;
+        }
+        else{
+            emptycom = false;
+        }
+        mainPage.setShowInfo(true, emptycom);
         return mainPage;
 
     }
@@ -58,16 +74,19 @@ public class Bid
     }
 
     public List<Commodity> getCommodities() {
+
         List<Commodity> commodityLst = session.createCriteria(Commodity.class)
                 .add(Restrictions.eq("client", webUser.getUser()))
+                .add(Restrictions.eq("app", ind  ))
                 .list();
         cost= 0;
         for(Commodity commodity : commodityLst) {
             cost += Long.valueOf(commodity.price) * commodity.amt;
         }
+        ind= 1;
         return session.createCriteria(Commodity.class)
                 .add(Restrictions.eq("client", webUser.getUser()))
-                //.add(Restrictions.eq("amt", null ))
+                .add(Restrictions.eq("app", ind  ))
                 .list();
     }
 
@@ -121,14 +140,7 @@ public class Bid
 
 
         void setup() {
-            List<Commodity> commodityLst = session.createCriteria(Commodity.class)
-                    .add(Restrictions.eq("client", webUser.getUser()))
-                    .list();
-            long total = 0;
-            for(Commodity commodity : commodityLst) {
-                total += Long.valueOf(commodity.price) * commodity.amt;
-            }
-            cost= total;
+        }
 
         //this.clientID = clientID;
        /* //Product product = (Product) session.createCriteria(Product.class).add(Restrictions.eq("name", "a")).uniqueResult();
@@ -148,7 +160,6 @@ public class Bid
             message = String.format(message+" "+product.getPrice()+ " "+  product.getName()+"," );
             //message= String.valueOf(0);
         }*/
-    }
 
 
 }
