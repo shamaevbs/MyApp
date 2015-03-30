@@ -19,10 +19,11 @@ Description: A Web 2.0 design with fluid width suitable for blogs and small webs
     </head>
     <body>
         <!-- start header -->
-        <div class="header">
+        <div  class="header">
             <div class="logo">
-                <h1>
-                    <t:pagelink page="index">Pizzeria</t:pagelink>
+                <h1 >
+                    <div class="pizza-logo"></div>
+                    <t:pagelink page="index"  >Pizzeria</t:pagelink>
                     <!--
                     &nbsp;
                     version ${appVersion}
@@ -32,9 +33,9 @@ Description: A Web 2.0 design with fluid width suitable for blogs and small webs
             <div class="menu">
                 <ul>
                     <li t:type="loop" source="pageNames" value="pageName" class="prop:classForPageName">
-                        <t:pagelink page="prop:pageName">${pageName}</t:pagelink>
+                        <t:pagelink  page="prop:pageName"> ${pageName}</t:pagelink>
                     </li>
-                </ul>l>
+                </ul    >
             </div>
         </div>
         <!-- end header -->
@@ -79,12 +80,14 @@ Description: A Web 2.0 design with fluid width suitable for blogs and small webs
                 &copy;2015 MyApp. All Rights Reserved.
                 &nbsp;&nbsp;&bull;&nbsp;&nbsp;
                 Design by
-                <a href="http://www.freecsstemplates.org/">Shamaev.bs</a>
-                &nbsp;&nbsp;&bull;&nbsp;&nbsp;
-                Icons by
-                <a href="http://famfamfam.com/">FAMFAMFAM</a>.
-            </p>
-        </div>
-        <!-- end footer -->
+                <a href="http://www.ShamaevBS.com/">Shamaev.bs</a>
+                <!--
+                        &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+                        Icons by
+                        <a href="http://famfamfam.com/">FAMFAMFAM</a>.
+                -->
+    </p>
+</div>
+<!-- end footer -->
     </body>
 </html>

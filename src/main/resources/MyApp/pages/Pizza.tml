@@ -5,6 +5,7 @@
 
 
     <h1>Pizza</h1>
+    <p >
     <t:grid source="products" row="product" rowsPerPage= "10"   include= "price, name, specification, basket">
 
         <p:basketCell>
@@ -19,7 +20,13 @@
     include="price, name, specification, number"/>
 -->
     </t:grid>
-
-
+    </p>
+    <p>
+        <div class="pizza-logo"></div>
+    </p>
+    <!--
+    <p>
     <strong> In your basket: ${productID}</strong>
+    </p>
+    -->
 </html>

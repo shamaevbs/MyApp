@@ -7,7 +7,7 @@
     <!--
     <p>${message}</p>
     -->
-
+    <p>
     <t:grid source="commodities"    include= "price, name, amt" row="commodity" add="delete, addition, decrease ">
         <p:deletecell>
             <t:actionlink t:id="delete"       value="commodity.id" context="commodity.id">Delete</t:actionlink>
@@ -25,30 +25,32 @@
             include="price, name, specification, number"/>
         -->
     </t:grid>
+    </p>
+    <p  align = "center">
+        <form t:id="applicationform">
+            <t:errors/>
 
-    <form t:id="applicationform">
-        <t:errors/>
+            <div class="t-beaneditor">
 
-        <div class="t-beaneditor">
-
-            <t:beaneditor t:id="application" object="application">[BeanEditForm here]
+                <t:beaneditor t:id="application" object="application">[BeanEditForm here]
                <!-- <p:version>
                     <t:hidden value="application.version"/>
                 </p:version>
                 -->
-            </t:beaneditor>
+                </t:beaneditor>
 
-            <div class="t-beaneditor-row">
+                <div class="t-beaneditor-row">
                 <input t:type="submit" value="Save"  t:mixins="confirm" t:message="${message:confirm}" />
                 <!--
                 <a t:type="eventlink" t:event="refresh" href="#">Refresh</a>&nbsp;
                 -->
+                </div>
             </div>
-        </div>
-    </form>
-
-    <strong>    In total:${cost}   </strong>
-
+        </form>
+    </p>
+    <p>
+        <strong>    In total:${cost}   </strong>
+    </p>
     <!--
     <t:beaneditform object="application"  submitlabel="message:submit-label"
            reorder=" name, street, house, apartment, phone"  t:mixins="confirm" t:message="${message:confirm}" />

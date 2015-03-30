@@ -26,7 +26,7 @@ input {
 }
 
 h1, h1 a, h2, h2 a, h3, h3 a {
-    margin: 0;
+
     text-decoration: none;
     font-family: Tahoma, Georgia, "Times New Roman", Times, serif;
     font-weight: normal;
@@ -42,6 +42,7 @@ h1 {
 h2 {
     letter-spacing: -1px;
     font-size: 2em;
+
 }
 
 h3 {
@@ -92,7 +93,12 @@ div.logo p {
 
 div.logo a {
     text-decoration: none;
-    color: #D0C7A6;
+    color: #E00718;
+    text-transform: capitalize;
+    font-weight: bold;
+    margin: 0px;
+    margin-left: -15px;
+
 }
 
 div.menu {
@@ -113,14 +119,14 @@ div.menu li {
 
 div.menu a {
     display: block;
-    padding: 8px 20px 0px 20px;
+    padding: 45px 150px 0 25px;
     text-decoration: none;
     text-align: center;
-    text-transform: lowercase;
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-weight: normal;
-    font-size: 14px;
-    color: #CEC5A4;
+    /* text-transform: lowercase; */
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-weight: bold;
+    font-size: 17px;
+    color: #AD1805
 }
 
 div.menu .last {
@@ -161,9 +167,10 @@ div.content {
 
 .post .title h2 {
     padding: 30px 30px 0 0px;
-    text-transform: lowercase;
+/*text-transform: lowercase;*/
     font-weight: normal;
     font-size: 2.2em;
+    text-align: center;
 }
 
 .post .title p {
@@ -366,4 +373,12 @@ div.footer .css {
 
 div.footer .legal a {
     padding: 0;
+}
+
+
+.pizza-logo {
+    background: url(images/pizza.jpg) repeat-x;
+    width: 80px;
+    height: 80px;
+    background-size: 100% auto;
 }
