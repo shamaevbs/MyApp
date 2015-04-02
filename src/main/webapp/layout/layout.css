@@ -119,14 +119,15 @@ div.menu li {
 
 div.menu a {
     display: block;
-    padding: 45px 150px 0 25px;
+    padding: 45px 130px 45px 25px;
     text-decoration: none;
     text-align: center;
     /* text-transform: lowercase; */
     font-family: Verdana,Arial,Helvetica,sans-serif;
     font-weight: bold;
     font-size: 17px;
-    color: #AD1805
+    color: #AD1805;
+
 }
 
 div.menu .last {
@@ -204,7 +205,7 @@ div.content {
     color: #FFFFFF;
 }
 
-.post .links a:hover {
+.post .links a:hov  er {
 }
 
 .post .links .more {
@@ -375,10 +376,40 @@ div.footer .legal a {
     padding: 0;
 }
 
+.basket-pic{
+    background: url(images/basket.jpg) repeat-x;
+    width: 30px;
+    height: 30px;
+    background-size: 100% auto;
+    margin-right: 0px;
+    margin-left: 890px;
+    margin-top: 1px;
+}
 
 .pizza-logo {
     background: url(images/pizza.jpg) repeat-x;
-    width: 80px;
-    height: 80px;
+    width: 83px;
+    height: 83px;
     background-size: 100% auto;
+}
+
+.t-application{
+    display: block;
+    /* background: #ffc; */
+    /* border: 2px outset brown; */
+    padding: 2px;
+    font-family: "Trebuchet MS",Arial,sans-serif;
+    text-align: center;
+}
+DIV.t-application-row{
+    padding: 4px 0 2px 0;
+}
+DIV.t-application-row LABEL{
+    width: 250px;
+    display: block;
+    float: left;
+    text-align: right;
+    clear: left;
+    padding-right: 3px;
+    vertical-align: middle;
 }

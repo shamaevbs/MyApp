@@ -3,8 +3,9 @@
       xmlns:p="tapestry:parameter"
         >
 
-
+    <!--
     <h1>Pizza</h1>
+    -->
     <p >
     <t:grid source="products" row="product" rowsPerPage= "10"   include= "price, name, specification, basket">
 
@@ -20,9 +21,6 @@
     include="price, name, specification, number"/>
 -->
     </t:grid>
-    </p>
-    <p>
-        <div class="pizza-logo"></div>
     </p>
     <!--
     <p>

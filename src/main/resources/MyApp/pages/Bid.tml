@@ -26,11 +26,12 @@
         -->
     </t:grid>
     </p>
-    <p  align = "center">
+    <p>
+
         <form t:id="applicationform">
             <t:errors/>
 
-            <div class="t-beaneditor">
+            <div class="t-application">
 
                 <t:beaneditor t:id="application" object="application">[BeanEditForm here]
                <!-- <p:version>
@@ -39,7 +40,7 @@
                 -->
                 </t:beaneditor>
 
-                <div class="t-beaneditor-row">
+                <div class="t-application-row">
                 <input t:type="submit" value="Save"  t:mixins="confirm" t:message="${message:confirm}" />
                 <!--
                 <a t:type="eventlink" t:event="refresh" href="#">Refresh</a>&nbsp;
