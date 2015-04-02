@@ -7,10 +7,11 @@ Released for free under a Creative Commons Attribution 2.5 License
 body {
     margin: 0;
     padding: 0;
-    background: #FFFFFF url(images/img01.jpg) repeat-x;
+    background: #fff url(images/img01.jpg) repeat-x;
     text-align: justify;
-    font: 15px Arial, Helvetica, sans-serif;
+    font: 15px Arial,Helvetica,sans-serif;
     color: #626262;
+    margin-left: 100px;
 }
 
 form {
@@ -396,32 +397,67 @@ div.footer .legal a {
     margin-top: -41px
 }
 
-.t-application{
+
+
+DIV.but-save{
+    padding: 4px 0 2px 0;
+    color: green;
+}
+
+
+DIV.t-beaneditor {
     display: block;
-    /* background: #ffc; */
-    /* border: 2px outset brown; */
+    background: #FFF;
+    border: 0px outset brown;
     padding: 2px;
     font-family: "Trebuchet MS",Arial,sans-serif;
-    text-align: center;
+
 }
-DIV.t-application-row{
-    padding: 4px 0 2px 0;
-    color: green;
+
+DIV.t-beaneditor-row {
+    padding: 9px 0px 3px 0px;
+    margin-left: auto;
+    text-align: left;
 }
-#application{
-    padding: 4px 0 2px 0;
-    color: green;
-}
-DIV.t-application-row LABEL{
-    width: 250px;
+DIV.t-beaneditor-row LABEL{
+    width: 105px;
     display: block;
     float: left;
     text-align: right;
     clear: left;
     padding-right: 3px;
     vertical-align: middle;
+    text-align: -webkit-left;
 }
-DIV.but-save{
-    padding: 4px 0 2px 0;
-    color: green;
+
+DIV.t-data-grid {
+    font-family: "Trebuchet MS",Arial,sans-serif;
+}
+DIV.t-data-grid-pager {
+    margin: 31px 0;
+}
+DIV.t-data-grid-pager SPAN.current {
+    color: white;
+    background-color: #23B14D;
+}
+TABLE.t-data-grid THEAD TR TH {
+    text-align: left;
+    padding: 3px;
+    white-space: nowrap;
+    border-right: 1px solid silver;
+    border-bottom: 1px solid silver;
+}
+
+table.t-data-grid {
+    font-family: "Trebuchet MS",Arial,sans-serif;
+}
+
+TABLE.t-data-grid {
+    border-collapse: collapse;
+    border-left: 1px solid silver;
+}
+TABLE.t-data-grid TBODY TR TD {
+    border-right: 1px solid silver;
+    border-bottom: 1px solid silver;
+    padding: 2px;
 }

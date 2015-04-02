@@ -26,23 +26,35 @@ public class Product {
 
 
     @Validate("required")
-    private String price;
+    public String price;
 
     public String getPrice() {
         return price;
     }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
     @Validate("required")
-    private String name;
+    public String name;
 
     public String getName(){
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Validate("required")
-    private String specification;
+    public String specification;
 
     public String getSpecification(){
         return specification;
+    }
+
+    public void setSpecification(String specification) {
+        this.specification = specification;
     }
 
     @Validate("required")
@@ -65,6 +77,8 @@ public class Product {
     }
 
     public String basket;
+
+    public String consist;
 
        // @Validate("required")
     //public String firstName;

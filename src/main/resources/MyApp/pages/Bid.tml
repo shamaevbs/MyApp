@@ -27,18 +27,18 @@
     </t:grid>
     </p>
     <p>
-
         <form t:id="applicationform">
             <t:errors/>
 
-            <div class="t-application">
+            <div class="t-beaneditor">
 
-                <t:beaneditor t:id="application"  object="application">[BeanEditForm here]
+                <t:beaneditor t:id="application" object="application">[BeanEditForm here]
                <!-- <p:version>
                     <t:hidden value="application.version"/>
                 </p:version>
                 -->
                 </t:beaneditor>
+            </div>
 
                 <div class="but-save">
                 <input t:type="submit" value="Save"  t:mixins="confirm" t:message="${message:confirm}" />
@@ -46,7 +46,7 @@
                 <a t:type="eventlink" t:event="refresh" href="#">Refresh</a>&nbsp;
                 -->
                 </div>
-            </div>
+
         </form>
     </p>
     <p>
