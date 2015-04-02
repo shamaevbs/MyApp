@@ -22,7 +22,9 @@ Description: A Web 2.0 design with fluid width suitable for blogs and small webs
         <div  class="header">
             <div class="logo">
                 <h1 >
-                    <div class="pizza-logo"></div>
+                <a href="/MyApp/">
+                    <div  class="pizza-logo"> </div>
+                </a>
                     <t:pagelink page="index"  >Pizzeria</t:pagelink>
                     <!--
                     &nbsp;

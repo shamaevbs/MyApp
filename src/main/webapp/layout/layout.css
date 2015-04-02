@@ -20,9 +20,10 @@ form {
 
 input {
     padding: 5px;
-    background: #FEFEFE url(images/img13.gif) repeat-x;
-    border: 1px solid #626262;
-    font: normal 1em Arial, Helvetica, sans-serif;
+    /* background: #fefefe url(images/img13.gif) repeat-x; */
+    /* border: 0 solid #626262; */
+    /* font: normal 1em Arial,Helvetica,sans-serif; */
+    width: 260px
 }
 
 h1, h1 a, h2, h2 a, h3, h3 a {
@@ -391,6 +392,8 @@ div.footer .legal a {
     width: 83px;
     height: 83px;
     background-size: 100% auto;
+    margin: auto;
+    margin-top: -41px
 }
 
 .t-application{
@@ -403,6 +406,11 @@ div.footer .legal a {
 }
 DIV.t-application-row{
     padding: 4px 0 2px 0;
+    color: green;
+}
+#application{
+    padding: 4px 0 2px 0;
+    color: green;
 }
 DIV.t-application-row LABEL{
     width: 250px;
@@ -412,4 +420,8 @@ DIV.t-application-row LABEL{
     clear: left;
     padding-right: 3px;
     vertical-align: middle;
+}
+DIV.but-save{
+    padding: 4px 0 2px 0;
+    color: green;
 }
