@@ -94,13 +94,14 @@ div.logo p {
 }
 
 div.logo a {
+    position: absolute;
     text-decoration: none;
-    color: #E00718;
+    color: #e00718;
     text-transform: capitalize;
     font-weight: bold;
-    margin: 0px;
-    margin-left: -15px;
-
+    margin: 0;
+    top: 79px;
+    margin-left: 0px;
 }
 
 div.menu {
@@ -167,10 +168,11 @@ div.content {
 }
 
 .post .title h2 {
-    padding: 30px 30px 0 0px;
-/*text-transform: lowercase;*/
-    font-weight: normal;
-    font-size: 2.2em;
+    padding: 30px 30px 0 0;
+    /* font-weight: normal; */
+    /* font-size: 2.2em; */
+    /* font-style: inherit; */
+    font: 43px/24px 'RockwellMT-Bold',Georgia,"Bitstream Charter","Century Schoolbook L","Liberation Serif",Times,serif;
     text-align: center;
 }
 
@@ -378,8 +380,8 @@ div.footer .legal a {
 
 .basket-pic{
     background: url(images/basket.jpg) repeat-x;
-    width: 30px;
-    height: 30px;
+    width: 45px;
+    height: 45px;
     background-size: 100% auto;
     margin-right: 0;
     position: fixed;
@@ -388,16 +390,17 @@ div.footer .legal a {
 }
 
 .pizza-logo {
-    /*background: url(images/pizza.jpg) repeat-x;
-    width: 83px;
+    background: url(images/pizza.jpg) repeat-x;
+    width: 53px;
     height: 83px;
     background-size: 100% auto;
     margin: auto;
-    margin-top: 0px;
+    margin-top: 0;
+    left: 26px;
     position: absolute;
-
-    top: 3.5%;  */
-    /* right: 15px; */
+    top: -56px;
+    /* left: 140px; */
+    z-index: 10;
 }
 
 
