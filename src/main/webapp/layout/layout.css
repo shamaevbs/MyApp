@@ -7,7 +7,7 @@ Released for free under a Creative Commons Attribution 2.5 License
 body {
     margin: 0;
     padding: 0;
-    background: #fff url(images/img01.jpg) repeat-x;
+    background: #fff url(images/BodyImg.jpg.jpg) repeat-x;
     text-align: justify;
     font: 15px Arial,Helvetica,sans-serif;
     color: #626262;
@@ -104,33 +104,31 @@ div.logo a {
 }
 
 div.menu {
-    float: right;
+
 }
 
 div.menu ul {
-    margin: 0;
-    padding: 0;
     list-style: none;
+    margin: 0 0 0 180px;
+/* padding: 20px 0 0 25px;*/
 }
 
 div.menu li {
-    display: block;
+    list-style: none;
     float: left;
-    height: 42px;
+    position: relative;
+    z-index: 9;
 }
 
 div.menu a {
+    color: rgb(224, 7, 24);
     display: block;
-    padding: 45px 130px 45px 25px;
-    text-decoration: none;
-    text-align: center;
-    /* text-transform: lowercase; */
-    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 20px;
     font-weight: bold;
-    font-size: 17px;
-    color: #AD1805;
-
+    padding: 8px 60px;
+    text-decoration: none;
 }
+
 
 div.menu .last {
     margin-right: 20px;
@@ -383,18 +381,23 @@ div.footer .legal a {
     width: 30px;
     height: 30px;
     background-size: 100% auto;
-    margin-right: 0px;
-    margin-left: 890px;
-    margin-top: 1px;
+    margin-right: 0;
+    position: fixed;
+    right: 15px;
+    top: 83px;
 }
 
 .pizza-logo {
-    background: url(images/pizza.jpg) repeat-x;
+    /*background: url(images/pizza.jpg) repeat-x;
     width: 83px;
     height: 83px;
     background-size: 100% auto;
     margin: auto;
-    margin-top: -41px
+    margin-top: 0px;
+    position: absolute;
+
+    top: 3.5%;  */
+    /* right: 15px; */
 }
 
 
@@ -460,4 +463,35 @@ TABLE.t-data-grid TBODY TR TD {
     border-right: 1px solid silver;
     border-bottom: 1px solid silver;
     padding: 2px;
+}
+#bloktopmenu {
+    /*background-color: #000; */
+    position: absolute;
+    width: 1200px;
+    max-width: 1200px;
+    min-width: 1024px;
+    /* height: 80px; */
+    margin: 0 auto;
+    background-color: rgb(34, 177, 76);
+    margin-top: 25px;
+    /*background: #fff url(images/BodyImg.jpg) repeat-x;*/
+}
+#top-menu {
+    list-style: none;
+    margin: 0px 0 0 180px;
+    padding: 20px 0 0 25px;
+}
+#top-menu > li {
+    list-style: none;
+    float: left;
+    position: relative;
+    z-index: 9;
+}
+#top-menu > li > a {
+    color: #FFF;
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 8px 14px;
+    text-decoration: none;
 }
