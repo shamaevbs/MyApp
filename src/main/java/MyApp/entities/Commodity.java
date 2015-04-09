@@ -29,6 +29,7 @@ public class Commodity {
     public long client;
     public long amt;
     public long app;
+
     //public long amt;
 
 

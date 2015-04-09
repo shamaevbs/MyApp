@@ -43,15 +43,18 @@ public class Layout
     private String appVersion;
 
 
+
     public String getClassForPageName()
     {
         return resources.getPageName().equalsIgnoreCase(pageName)
                 ? "current_page_item"
                 : null;
+
     }
 
     public String[] getPageNames()
     {
         return new String[]{"Pizza","News",  "About",  "Book", "Bid"};
     }
+
 }

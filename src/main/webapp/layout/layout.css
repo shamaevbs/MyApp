@@ -7,7 +7,8 @@ Released for free under a Creative Commons Attribution 2.5 License
 body {
     margin: 0;
     padding: 0;
-    background: #fff url(images/BodyImg.jpg.jpg) repeat-x;
+   /* background: #fff url(images/pizza.jpg) repeat-x; */
+    background-color: #ffffff;
     text-align: justify;
     font: 15px Arial,Helvetica,sans-serif;
     color: #626262;
@@ -96,7 +97,7 @@ div.logo p {
 div.logo a {
     position: absolute;
     text-decoration: none;
-    color: #e00718;
+    color: #B23A3A;
     text-transform: capitalize;
     font-weight: bold;
     margin: 0;
@@ -122,7 +123,7 @@ div.menu li {
 }
 
 div.menu a {
-    color: rgb(224, 7, 24);
+    color: #B23A3A;
     display: block;
     font-size: 20px;
     font-weight: bold;
@@ -449,8 +450,9 @@ DIV.t-data-grid-pager SPAN.current {
 TABLE.t-data-grid THEAD TR TH {
     text-align: left;
     padding: 3px;
+    padding-right: 128px;
     white-space: nowrap;
-    border-right: 1px solid silver;
+    /* border-right: 1px solid silver; */
     border-bottom: 1px solid silver;
 }
 
@@ -460,12 +462,41 @@ table.t-data-grid {
 
 TABLE.t-data-grid {
     border-collapse: collapse;
-    border-left: 1px solid silver;
+    border-left: none;
+    /*border-left: 1px solid silver; */
+}
+TABLE.t-data-grid THEAD TR {
+     color: #ffffff;
+     background-color: #B23A3A;
+}
+
+TABLE.t-data-grid TR TH A {
+    color: white;
+    text-align: center;
 }
 TABLE.t-data-grid TBODY TR TD {
-    border-right: 1px solid silver;
-    border-bottom: 1px solid silver;
-    padding: 2px;
+    padding: 6px;
+    text-align: -webkit-center;
+    /* margin-top: 18px; */
+    padding-bottom: 55px;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: blue;
+}
+
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: darkgreen;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: red;
 }
 #bloktopmenu {
     /*background-color: #000; */
@@ -497,4 +528,12 @@ TABLE.t-data-grid TBODY TR TD {
     font-weight: bold;
     padding: 8px 14px;
     text-decoration: none;
+}
+.InTotal{
+    color: red;
+    position: fixed;
+    margin-right: 0;
+    position: fixed;
+    right: 21px;
+    top: 51px;
 }
