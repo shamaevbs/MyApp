@@ -8,6 +8,7 @@ import org.apache.tapestry5.annotations.*;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.upload.services.UploadedFile;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -37,12 +38,15 @@ public class Bid
     private Pizza mainPage;
 
 
+    @Property
+    private UploadedFile file;
+
     @Inject
     WebUser webUser;
 
     @CommitAfter
-    Object onSuccess()
-    {
+    Object onSuccess()    {
+
         session.persist(application);
         List<Commodity> commodityLst = session.createCriteria(Commodity.class)
                 .add(Restrictions.eq("client", webUser.getUser()))

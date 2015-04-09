@@ -7,7 +7,7 @@
     <h1>Pizza</h1>
     -->
     <p >
-    <t:grid source="products" row="product" rowsPerPage= "10"   include= "price, name, consist, specification, basket">
+    <t:grid source="products" row="product" rowsPerPage= "30"   include= "price, name, consist, specification, basket">
 
         <p:basketCell>
 
@@ -16,15 +16,16 @@
         <t:pagelink page="Bid" context="product.name">${product.number}   </t:pagelink>
         -->
         </p:basketCell>
+        <p:basketHeader>
 
-<!--
-    include="price, name, specification, number"/>
--->
+        </p:basketHeader>
+        <p:specificationHeader>
+             Specification
+        </p:specificationHeader>
+        <p:consistHeader>
+            Consist
+        </p:consistHeader>
     </t:grid>
     </p>
-    <!--
-    <p>
-    <strong> In your basket: ${productID}</strong>
-    </p>
-    -->
+
 </html>

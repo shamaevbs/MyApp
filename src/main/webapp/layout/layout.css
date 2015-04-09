@@ -7,7 +7,7 @@ Released for free under a Creative Commons Attribution 2.5 License
 body {
     margin: 0;
     padding: 0;
-   /* background: #fff url(images/pizza.jpg) repeat-x; */
+    /* background: #fff url(images/pizza.jpg) repeat-x; */
     background-color: #ffffff;
     text-align: justify;
     font: 15px Arial,Helvetica,sans-serif;
@@ -45,6 +45,14 @@ h1 {
 h2 {
     letter-spacing: -1px;
     font-size: 2em;
+
+    display: block;
+    font-size: 1.5em;
+    -webkit-margin-before: 0.83em;
+    -webkit-margin-after: 0.83em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
 
 }
 
@@ -112,7 +120,7 @@ div.menu {
 div.menu ul {
     list-style: none;
     margin: 0 0 0 180px;
-/* padding: 20px 0 0 25px;*/
+    /* padding: 20px 0 0 25px;*/
 }
 
 div.menu li {
@@ -156,19 +164,22 @@ div.page {
 /* Content */
 
 div.content {
-    margin-right: 340px;
+    margin-right: 63px;
 }
 
 .post {
     margin-bottom: 10px;
 }
 
-.post .title {
-    border-bottom: 1px #999999 dashed;
-    font-family: Tahoma, Georgia, "Times New Roman", Times, serif;
+.title {
+    display: block;
+    width: 990px;
+    border-bottom: 1px #999 dashed;
+    position: inherit;
+    font-family: Tahoma,Georgia,"Times New Roman",Times,serif;
 }
 
-.post .title h2 {
+.title h2 {
     padding: 30px 30px 0 0;
     /* font-weight: normal; */
     /* font-size: 2.2em; */
@@ -269,7 +280,7 @@ div.sidebar DIV.sidebar-content {
 /* Search */
 
 li.search {
-    padding: 20px 30px 40px 30px;
+    padding: 0;
 }
 
 li.search input {
@@ -448,11 +459,12 @@ DIV.t-data-grid-pager SPAN.current {
     background-color: #23B14D;
 }
 TABLE.t-data-grid THEAD TR TH {
-    text-align: left;
+
+
+    text-align: center;
     padding: 3px;
-    padding-right: 128px;
+    border: none;
     white-space: nowrap;
-    /* border-right: 1px solid silver; */
     border-bottom: 1px solid silver;
 }
 
@@ -466,19 +478,23 @@ TABLE.t-data-grid {
     /*border-left: 1px solid silver; */
 }
 TABLE.t-data-grid THEAD TR {
-     color: #ffffff;
-     background-color: #B23A3A;
+    color: #ffffff;
+    background-color: #B23A3A;
 }
 
 TABLE.t-data-grid TR TH A {
+    text-decoration: blink;
     color: white;
     text-align: center;
 }
 TABLE.t-data-grid TBODY TR TD {
     padding: 6px;
     text-align: -webkit-center;
+    border-right: none;
+    border-bottom: 1px #999 dashed;
     /* margin-top: 18px; */
-    padding-bottom: 55px;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 
 tr {
@@ -536,4 +552,7 @@ tbody {
     position: fixed;
     right: 21px;
     top: 51px;
+}
+.th.basket t-last{
+    background-color: #ffffff;
 }
