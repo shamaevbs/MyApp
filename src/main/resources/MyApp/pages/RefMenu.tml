@@ -1,0 +1,14 @@
+<html t:type="layout" title="Refresh Menu"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+        >
+
+     <p>
+        <t:actionlink t:id="refresh">Refresh</t:actionlink>
+     </p>
+
+
+    <p>
+        <strong> In your basket: ${testB}</strong>
+    </p>
+
+</html>

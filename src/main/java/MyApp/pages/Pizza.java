@@ -3,10 +3,6 @@ package MyApp.pages;
 import MyApp.entities.Commodity;
 import MyApp.entities.Product;
 import MyApp.services.WebUser;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.tapestry5.PersistenceConstants;
 import org.apache.tapestry5.annotations.*;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -15,11 +11,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -33,7 +24,6 @@ public class Pizza {
     @Inject
     private Session session;
 
-    @Property @Persist private long testB;
 
     @Property
     @Persist
@@ -93,66 +83,6 @@ public class Pizza {
 
     @OnEvent(component = "makeBasket")
      Object makeBasket( long value){
-        try {
-            File excel = new File("C:\\Users\\shamaev.bs\\Work\\MyApp\\src\\main\\java\\MyApp\\pages\\BData.xlsx");
-            FileInputStream fis = new FileInputStream(excel);
-            XSSFWorkbook book = new XSSFWorkbook(fis);
-            XSSFSheet sheet = book.getSheetAt(0);
-
-            Iterator<Row> itr = sheet.iterator();
-            testB=4;
-            // Iterating over Excel file in Java
-            while (itr.hasNext()) {
-                Row row = itr.next();
-
-                // Iterating over each column of Excel file
-                Iterator<Cell> cellIterator = row.cellIterator();
-                while (cellIterator.hasNext()) {
-
-                    Cell cell = cellIterator.next();
-
-                    switch (cell.getCellType()) {
-                        case Cell.CELL_TYPE_STRING:
-                            //System.out.print(cell.getStringCellValue() + "\t");
-                            testB++;
-                            break;
-                        case Cell.CELL_TYPE_NUMERIC:
-                            //System.out.print(cell.getNumericCellValue() + "\t");
-                            testB++;
-                            break;
-                        case Cell.CELL_TYPE_BOOLEAN:
-                            //System.out.print(cell.getBooleanCellValue() + "\t");
-                            testB++;
-                            break;
-                        default:
-
-                    }
-                }
-                //System.out.println("");
-            }
-
-            // writing data into XLSX file
-
-
-
-            // open an OutputStream to save written data into Excel file
-
-            //System.out.println("Writing on Excel file Finished ...");
-
-            // Close workbook, OutputStream and Excel file to prevent leak
-            book.close();
-            fis.close();
-
-        } catch (FileNotFoundException fe) {
-            testB=5;
-            fe.printStackTrace();
-        } catch (IOException ie) {
-            testB=6;
-            ie.printStackTrace();
-        }
-
-
-
         productID = value;
         ind = 1;
         List<Commodity> commodityLst = session.createCriteria(Commodity.class)

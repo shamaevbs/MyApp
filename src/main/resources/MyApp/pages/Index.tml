@@ -8,11 +8,12 @@
         </p>
 
 
-
-
-
         <ul>
             <li><t:pagelink page="address/create">Create new pizza</t:pagelink></li>
+        </ul>
+
+        <ul>
+            <li><t:pagelink page="RefMenu">Refresh menu</t:pagelink></li>
         </ul>
 
 
