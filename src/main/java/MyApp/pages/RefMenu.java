@@ -5,10 +5,11 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.apache.tapestry5.annotations.Log;
+import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.upload.services.UploadedFile;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -31,14 +32,26 @@ public class RefMenu {
     @Persist
     private long testB;
 
+
+
+    @Property
+    private UploadedFile file;
+
+    @Component(id = "file")
+    private org.apache.tapestry5.upload.components.Upload fileField;
+
     @Inject
     private Session session;
     @Property
     private Product product;
 
-    @Log
-    Object onActionFromRefresh()
-    {
+    public void onSuccess()
+    {   File copied = new File("C:\\\\Users\\\\shamaev.bs\\\\Work\\\\MyApp\\\\src\\\\main\\\\java\\\\MyApp\\\\pages\\\\" + file.getFileName());
+
+        file.write(copied);
+
+
+
         List<Product> productLst = session.createCriteria(Product.class).list();
         for(Product product : productLst) {
             Transaction transaction = session.beginTransaction();
@@ -48,7 +61,7 @@ public class RefMenu {
 
 
         try {
-            File excel = new File("C:\\Users\\shamaev.bs\\Work\\MyApp\\src\\main\\java\\MyApp\\pages\\BData.xlsx");
+            File excel = copied; /*new File("C:\\Users\\shamaev.bs\\Work\\MyApp\\src\\main\\java\\MyApp\\pages\\BData.xlsx");*/
             FileInputStream fis = new FileInputStream(excel);
             XSSFWorkbook book = new XSSFWorkbook(fis);
             XSSFSheet sheet = book.getSheetAt(0);
@@ -65,7 +78,7 @@ public class RefMenu {
                 // Iterating over each column of Excel file
                 Iterator<Cell> cellIterator = row.cellIterator();
                 Cell cell = cellIterator.next();
-                product1.price=Double.toString(cell.getNumericCellValue());
+                product1.price= Integer.toString((int) cell.getNumericCellValue());
 
                 Cell cell1 = cellIterator.next();
                 product1.name = cell1.getStringCellValue();
@@ -129,7 +142,7 @@ public class RefMenu {
         } catch (IOException ie) {
             ie.printStackTrace();
         }
-        return null;
+
     }
 
 }

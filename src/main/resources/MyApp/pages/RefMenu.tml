@@ -2,31 +2,13 @@
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
         >
 
-     <p>
-        <t:actionlink t:id="refresh">Refresh</t:actionlink>
-     </p>
 
-     <form t:type="CustomForm" t:id="uploadForm">
-
-
-         <input t:type="Upload" t:id="file" t:validate="required" onClick="fileUpload.hideResults();" t:disabled="demoMode"/><br/>
-         <input t:type="Submit" t:id="upload" value="Upload" onClick="fileUpload.showProgress();" t:disabled="demoMode"/><br/>
-
-         <div t:type="any" t:id="progress" style="display: none;">
-             ${message:progress}
-             <button t:type="chenillekit/Button" class="cancel" type="button" t:pageName="prop:thisPageName"
-                     title="Cancel" onClick="this.form.reset(); return true;">Cancel</button>
-         </div>
-
-         <div t:type="any" t:id="result">
-             <t:customerror for="file"/>
-             <div id="success">
-                 ${successMessage}
-             </div>
-             <t:errors />
-         </div>
-
-     </form>
+     <t:form>
+         <t:errors/>
+         <input t:type="upload" t:id="file" t:value="file" validate="required"/>
+         <br/>
+         <input type="submit" value="Upload"/>
+     </t:form>
 
 
 
