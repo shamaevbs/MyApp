@@ -17,6 +17,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -38,7 +39,15 @@ public class RefMenu {
     @Log
     Object onActionFromRefresh()
     {
-    try {
+        List<Product> productLst = session.createCriteria(Product.class).list();
+        for(Product product : productLst) {
+            Transaction transaction = session.beginTransaction();
+            session.delete(product);
+            transaction.commit();
+        }
+
+
+        try {
             File excel = new File("C:\\Users\\shamaev.bs\\Work\\MyApp\\src\\main\\java\\MyApp\\pages\\BData.xlsx");
             FileInputStream fis = new FileInputStream(excel);
             XSSFWorkbook book = new XSSFWorkbook(fis);
@@ -47,13 +56,31 @@ public class RefMenu {
             Iterator<Row> itr = sheet.iterator();
             testB=0;
             // Iterating over Excel file in Java
+
             while (itr.hasNext()) {
-                Product product = new Product();
+                Product product1 = new Product();
                 Row row = itr.next();
 
                 // Iterating over each column of Excel file
                 Iterator<Cell> cellIterator = row.cellIterator();
-                /*while (cellIterator.hasNext()) {
+                Cell cell = cellIterator.next();
+                product1.price=Double.toString(cell.getNumericCellValue());
+
+                Cell cell1 = cellIterator.next();
+                product1.name = cell1.getStringCellValue();
+
+                Cell cell2 = cellIterator.next();
+                product1.consist =cell2.getStringCellValue();
+
+                Cell cell3 = cellIterator.next();
+                product1.specification = cell3.getStringCellValue();
+                product1.basket="В корзину";
+
+                Transaction transaction = session.beginTransaction();
+                session.save(product1);
+                transaction.commit();
+                /*
+                while (cellIterator.hasNext()) {
 
                     Cell cell = cellIterator.next();
 
@@ -75,14 +102,16 @@ public class RefMenu {
                         default:
 
                     }
-                } */
-                Transaction transaction = session.beginTransaction();
-                session.save(product);
-                transaction.commit();
+                }
+                */
+                //Transaction transaction = session.beginTransaction();
+                //session.save(product);
+                //transaction.commit();
                 //System.out.println("");
             }
 
             // writing data into XLSX file
+
 
 
 
