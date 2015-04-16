@@ -28,4 +28,8 @@
     </t:grid>
     </p>
 
+    <p>
+    <strong> In your basket: ${testB}</strong>
+    </p>
+
 </html>
