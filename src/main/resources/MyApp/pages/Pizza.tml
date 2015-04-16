@@ -7,7 +7,7 @@
     <h1>Pizza</h1>
     -->
     <p >
-    <t:grid source="products" row="product" rowsPerPage= "30"   include= "price, name, consist, specification, basket">
+    <t:grid source="products" row="product" rowsPerPage= "10"   include= "price, name, consist, specification, basket">
 
         <p:basketCell>
 
