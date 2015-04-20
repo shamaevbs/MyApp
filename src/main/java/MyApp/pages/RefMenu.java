@@ -5,7 +5,9 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.tapestry5.ValidationTracker;
 import org.apache.tapestry5.annotations.Component;
+import org.apache.tapestry5.annotations.Environmental;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
@@ -44,9 +46,12 @@ public class RefMenu {
     private Session session;
     @Property
     private Product product;
+    @Environmental
+    private ValidationTracker tracker;
 
     public void onSuccess()
-    {   File copied = new File("C:\\\\Users\\\\shamaev.bs\\\\Work\\\\MyApp\\\\src\\\\main\\\\java\\\\MyApp\\\\pages\\\\" + file.getFileName());
+    {
+        File copied = new File("C:\\\\Users\\\\shamaev.bs\\\\Work\\\\MyApp\\\\src\\\\main\\\\java\\\\MyApp\\\\pages\\\\" + file.getFileName());
 
         file.write(copied);
 
@@ -67,9 +72,8 @@ public class RefMenu {
             XSSFSheet sheet = book.getSheetAt(0);
 
             Iterator<Row> itr = sheet.iterator();
-            testB=0;
             // Iterating over Excel file in Java
-
+            itr.next();
             while (itr.hasNext()) {
 
                 Product product1 = new Product();
@@ -80,7 +84,13 @@ public class RefMenu {
                 Cell cell = cellIterator.next();
                 product1.price= Integer.toString((int) cell.getNumericCellValue());
 
-                Cell cell1 = cellIterator.next();
+
+                if ("0".equals(product1.price)) {
+                    throw new BadPriceException();
+                }
+
+
+                        Cell cell1 = cellIterator.next();
                 product1.name = cell1.getStringCellValue();
 
                 Cell cell2 = cellIterator.next();
@@ -141,8 +151,12 @@ public class RefMenu {
             fe.printStackTrace();
         } catch (IOException ie) {
             ie.printStackTrace();
+        } catch (BadPriceException e) {
+            tracker.recordError("Bad price");
         }
 
     }
 
+    private class BadPriceException extends Throwable {
+    }
 }
