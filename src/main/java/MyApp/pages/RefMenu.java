@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Iterator;
 import java.util.List;
 
@@ -32,7 +33,8 @@ import java.util.List;
 public class RefMenu {
     @Property
     @Persist
-    private long testB;
+    private BigDecimal testB;
+
 
 
 
@@ -82,7 +84,9 @@ public class RefMenu {
                 // Iterating over each column of Excel file
                 Iterator<Cell> cellIterator = row.cellIterator();
                 Cell cell = cellIterator.next();
-                product1.price= Integer.toString((int) cell.getNumericCellValue());
+                product1.price= new BigDecimal( cell.getNumericCellValue());
+                product1.price=product1.price.setScale(2,BigDecimal.ROUND_DOWN);
+
 
 
                 if ("0".equals(product1.price)) {

@@ -13,6 +13,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class Bid
@@ -28,7 +29,7 @@ public class Bid
     @Persist(PersistenceConstants.FLASH)
     private String message;
 
-    @Property @Persist private long cost;
+    @Property @Persist private BigDecimal cost;
     @Property @Persist private long ind;
     @Property @Persist private boolean emptycom;
 
@@ -83,10 +84,14 @@ public class Bid
                 .add(Restrictions.eq("client", webUser.getUser()))
                 .add(Restrictions.eq("app", ind  ))
                 .list();
-        cost= 0;
+        //new cost1 = '0'
+        BigDecimal cost1 = new BigDecimal(0.0);
         for(Commodity commodity : commodityLst) {
-            cost += Long.valueOf(commodity.price) * commodity.amt;
+            BigDecimal amt= new BigDecimal(commodity.amt);
+            cost1 = cost1.add(commodity.price.multiply(amt));
+            //cost1 += commodity.price * commodity.amt;
         }
+        cost=cost1.setScale(2,BigDecimal.ROUND_FLOOR);;
         ind= 1;
         return session.createCriteria(Commodity.class)
                 .add(Restrictions.eq("client", webUser.getUser()))

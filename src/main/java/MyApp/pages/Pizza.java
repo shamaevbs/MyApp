@@ -11,6 +11,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -55,7 +56,8 @@ public class Pizza {
 
     public List<Product> getProducts()
     {
-        return session.createCriteria(Product.class).list();
+        return session.createCriteria(Product.class)
+                .list();
     }
 
 
@@ -117,10 +119,17 @@ public class Pizza {
         commodityLst = session.createCriteria(Commodity.class)
                 .add(Restrictions.eq("client", webUser.getUser()))
                 .list();
-        long total = 0;
-        for(Commodity commodity : commodityLst) {
+        BigDecimal total;
+        /*for(Commodity commodity : commodityLst) {
             total += Long.valueOf(commodity.price) * commodity.amt;
+        }*/
+        BigDecimal total1 = new BigDecimal(0.0);
+        for(Commodity commodity : commodityLst) {
+            BigDecimal amt= new BigDecimal(commodity.amt);
+            total1 = total1.add(commodity.price.multiply(amt));
+            //cost1 += commodity.price * commodity.amt;
         }
+        total=total1.setScale(2,BigDecimal.ROUND_FLOOR);
         message = String.format(";");
 
 

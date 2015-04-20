@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.math.BigDecimal;
 
 
 /**
@@ -21,7 +22,7 @@ public class Commodity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NonVisual
     public long id;
-    public String price;
+    public BigDecimal price;
     public String name;
     //public String specification;
     public String number;

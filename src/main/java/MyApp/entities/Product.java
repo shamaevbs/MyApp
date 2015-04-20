@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.math.BigDecimal;
 
 
 /**
@@ -26,13 +27,15 @@ public class Product {
 
 
     @Validate("required")
-    public String price;
+    public BigDecimal price;
 
-    public String getPrice() {
+
+
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
     @Validate("required")
