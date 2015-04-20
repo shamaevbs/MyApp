@@ -33,7 +33,7 @@ import java.util.List;
 public class RefMenu {
     @Property
     @Persist
-    private BigDecimal testB;
+    private String testB;
 
 
 
@@ -51,24 +51,26 @@ public class RefMenu {
     @Environmental
     private ValidationTracker tracker;
 
+    public boolean checkString(String string) {
+        if (string == null) return false;
+        return string.matches("^-?\\d+$");
+    }
+
+
     public void onSuccess()
     {
-        File copied = new File("C:\\\\Users\\\\shamaev.bs\\\\Work\\\\MyApp\\\\src\\\\main\\\\java\\\\MyApp\\\\pages\\\\" + file.getFileName());
-
-        file.write(copied);
-
-
-
-        List<Product> productLst = session.createCriteria(Product.class).list();
-        for(Product product : productLst) {
-            Transaction transaction = session.beginTransaction();
-            session.delete(product);
-            transaction.commit();
-        }
-
-
+        int numstr= 2;
         try {
-            File excel = copied; /*new File("C:\\Users\\shamaev.bs\\Work\\MyApp\\src\\main\\java\\MyApp\\pages\\BData.xlsx");*/
+            int dotPos = file.getFileName().lastIndexOf(".");
+            String ext = file.getFileName().substring(dotPos+1);
+            testB = ext;
+            if(ext.compareTo("xlsx")!=0){
+                throw new BadLoadFileException();
+            }
+
+            File copied = new File("C:\\\\Users\\\\shamaev.bs\\\\Work\\\\MyApp\\\\src\\\\main\\\\java\\\\MyApp\\\\pages\\\\" + file.getFileName());
+            file.write(copied);
+            File excel = copied;
             FileInputStream fis = new FileInputStream(excel);
             XSSFWorkbook book = new XSSFWorkbook(fis);
             XSSFSheet sheet = book.getSheetAt(0);
@@ -76,6 +78,7 @@ public class RefMenu {
             Iterator<Row> itr = sheet.iterator();
             // Iterating over Excel file in Java
             itr.next();
+
             while (itr.hasNext()) {
 
                 Product product1 = new Product();
@@ -84,83 +87,108 @@ public class RefMenu {
                 // Iterating over each column of Excel file
                 Iterator<Cell> cellIterator = row.cellIterator();
                 Cell cell = cellIterator.next();
-                product1.price= new BigDecimal( cell.getNumericCellValue());
+                String PriceStr = cell.getStringCellValue();
+
+                if (!checkString(PriceStr)){
+
+                    throw new NumberPriceException();
+                }
+
+                product1.price= new BigDecimal( Integer.parseInt(PriceStr));
                 product1.price=product1.price.setScale(2,BigDecimal.ROUND_DOWN);
 
 
-
-                if ("0".equals(product1.price)) {
+                BigDecimal zero = new BigDecimal("0");
+                if (zero.compareTo(product1.price)==0) {
                     throw new BadPriceException();
                 }
 
 
-                        Cell cell1 = cellIterator.next();
+                Cell cell1 = cellIterator.next();
                 product1.name = cell1.getStringCellValue();
+                if ("".equals(product1.name)){
+                    throw new BadNameException();
+                }
+
 
                 Cell cell2 = cellIterator.next();
                 product1.consist =cell2.getStringCellValue();
+                if("".equals(product1.consist)){
+                    throw new BadConsistException();
+                }
+
 
                 Cell cell3 = cellIterator.next();
                 product1.specification = cell3.getStringCellValue();
+                if("".equals(product1.specification)){
+                    throw new BadSpecificationException();
+                }
                 product1.basket="В корзину";
 
                 Transaction transaction = session.beginTransaction();
                 session.save(product1);
                 transaction.commit();
-                /*
-                while (cellIterator.hasNext()) {
 
-                    Cell cell = cellIterator.next();
-
-                    switch (cell.getCellType()) {
-                        case Cell.CELL_TYPE_STRING:
-                            //System.out.print(cell.getStringCellValue() + "\t");
-                            product.name= cell.getStringCellValue();
-                            testB++;
-                            break;
-                        case Cell.CELL_TYPE_NUMERIC:
-                            //System.out.print(cell.getNumericCellValue() + "\t");;
-                            product.price=Double.toString(cell.getNumericCellValue());
-                            testB=testB+2;
-                            break;
-                        case Cell.CELL_TYPE_BOOLEAN:
-                            //System.out.print(cell.getBooleanCellValue() + "\t");
-                            testB++;
-                            break;
-                        default:
-
+                if ( numstr==2){
+                    List<Product> productLst = session.createCriteria(Product.class).list();
+                    for(Product product : productLst) {
+                        Transaction transaction1 = session.beginTransaction();
+                        session.delete(product);
+                        transaction1.commit();
                     }
                 }
-                */
-                //Transaction transaction = session.beginTransaction();
-                //session.save(product);
-                //transaction.commit();
-                //System.out.println("");
+
+                numstr++;
+
             }
 
-            // writing data into XLSX file
-
-
-
-
-            // open an OutputStream to save written data into Excel file
-
-            //System.out.println("Writing on Excel file Finished ...");
-
-            // Close workbook, OutputStream and Excel file to prevent leak
             book.close();
             fis.close();
 
         } catch (FileNotFoundException fe) {
-            fe.printStackTrace();
+            String error = "File not found";
+            tracker.recordError(error);
+            //fe.printStackTrace();
         } catch (IOException ie) {
-            ie.printStackTrace();
+            String error = "File not found";
+            tracker.recordError(error);
+            //ie.printStackTrace();
         } catch (BadPriceException e) {
-            tracker.recordError("Bad price");
+            String error ="In line "+ Integer.toString(numstr)+" invalid price";
+            tracker.recordError(error);
+        } catch (BadLoadFileException e){
+            String error = "Invalid File";
+            tracker.recordError(error);
+        } catch (BadNameException e ){
+            String error ="In line "+ Integer.toString(numstr)+" invalid name";
+            tracker.recordError(error);
+        } catch (BadConsistException e){
+            String error ="In line "+ Integer.toString(numstr)+" invalid consist";
+            tracker.recordError(error);
+        } catch (BadSpecificationException e){
+            String error ="In line "+ Integer.toString(numstr)+" invalid specification";
+            tracker.recordError(error);
+        } catch (NumberPriceException e){
+            String error ="In line "+ Integer.toString(numstr)+" invalid price";
+            tracker.recordError(error);
         }
-
     }
 
     private class BadPriceException extends Throwable {
+    }
+
+    private class BadLoadFileException extends Throwable {
+    }
+
+    private class BadNameException extends Throwable {
+    }
+
+    private class BadConsistException extends Throwable {
+    }
+
+    private class BadSpecificationException extends Throwable {
+    }
+
+    private class NumberPriceException extends Throwable {
     }
 }
