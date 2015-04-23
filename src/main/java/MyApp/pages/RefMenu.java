@@ -33,7 +33,7 @@ import java.util.List;
 public class RefMenu {
     @Property
     @Persist
-    private String testB;
+    private int testB;
 
 
 
@@ -59,11 +59,11 @@ public class RefMenu {
 
     public void onSuccess()
     {
-        int numstr= 2;
+        int numstr= 2, StringType, NumericType;
         try {
             int dotPos = file.getFileName().lastIndexOf(".");
             String ext = file.getFileName().substring(dotPos+1);
-            testB = ext;
+            //testB = ext;
             if(ext.compareTo("xlsx")!=0){
                 throw new BadLoadFileException();
             }
@@ -77,6 +77,9 @@ public class RefMenu {
 
             Iterator<Row> itr = sheet.iterator();
             // Iterating over Excel file in Java
+            if (!itr.hasNext()){
+                throw new EmptyFileException();
+            }
             itr.next();
 
             while (itr.hasNext()) {
@@ -86,43 +89,61 @@ public class RefMenu {
 
                 // Iterating over each column of Excel file
                 Iterator<Cell> cellIterator = row.cellIterator();
-                Cell cell = cellIterator.next();
-                String PriceStr = cell.getStringCellValue();
-
-                if (!checkString(PriceStr)){
-
-                    throw new NumberPriceException();
+                if (!cellIterator.hasNext()){
+                    throw new BadPriceException();
                 }
-
-                product1.price= new BigDecimal( Integer.parseInt(PriceStr));
-                product1.price=product1.price.setScale(2,BigDecimal.ROUND_DOWN);
-
-
-                BigDecimal zero = new BigDecimal("0");
-                if (zero.compareTo(product1.price)==0) {
+                Cell cell = cellIterator.next();
+                NumericType = cell.getCellType();
+                if ( NumericType!=0){
                     throw new BadPriceException();
                 }
 
+                if (0 == cell.getNumericCellValue()) {
+                    throw new BadPriceException();
+                }
+                product1.price = new BigDecimal(cell.getNumericCellValue());
+                product1.price=product1.price.setScale(2,BigDecimal.ROUND_DOWN);
 
-                Cell cell1 = cellIterator.next();
-                product1.name = cell1.getStringCellValue();
-                if ("".equals(product1.name)){
+
+                if (!cellIterator.hasNext()){
                     throw new BadNameException();
                 }
+                Cell cell1 = cellIterator.next();
+                StringType = cell1.getCellType();
+                if ( StringType!=1){
+                    throw new BadNameException();
+                }
+                if ("".equals(cell1.getStringCellValue())){
+                    throw new BadNameException();
+                }
+                product1.name = cell1.getStringCellValue();
 
-
-                Cell cell2 = cellIterator.next();
-                product1.consist =cell2.getStringCellValue();
-                if("".equals(product1.consist)){
+                if (!cellIterator.hasNext()){
                     throw new BadConsistException();
                 }
+                Cell cell2 = cellIterator.next();
+                StringType = cell2.getCellType();
+                if ( StringType!=1){
+                    throw new BadConsistException();
+                }
+                if("".equals(cell2.getStringCellValue())){
+                    throw new BadConsistException();
+                }
+                product1.consist =cell2.getStringCellValue();
 
-
-                Cell cell3 = cellIterator.next();
-                product1.specification = cell3.getStringCellValue();
-                if("".equals(product1.specification)){
+                if (!cellIterator.hasNext()){
                     throw new BadSpecificationException();
                 }
+                Cell cell3 = cellIterator.next();
+                StringType = cell3.getCellType();
+                if ( StringType!=1){
+                    throw new BadSpecificationException();
+                }
+                if("".equals(cell3.getStringCellValue())){
+                    throw new BadSpecificationException();
+                }
+                product1.specification = cell3.getStringCellValue();
+
                 product1.basket="В корзину";
 
                 Transaction transaction = session.beginTransaction();
@@ -140,6 +161,9 @@ public class RefMenu {
 
                 numstr++;
 
+            }
+            if (numstr==2){
+                throw new EmptyFileException();
             }
 
             book.close();
@@ -168,8 +192,8 @@ public class RefMenu {
         } catch (BadSpecificationException e){
             String error ="In line "+ Integer.toString(numstr)+" invalid specification";
             tracker.recordError(error);
-        } catch (NumberPriceException e){
-            String error ="In line "+ Integer.toString(numstr)+" invalid price";
+        } catch (EmptyFileException e){
+            String error  = "File is empty";
             tracker.recordError(error);
         }
     }
@@ -190,5 +214,8 @@ public class RefMenu {
     }
 
     private class NumberPriceException extends Throwable {
+    }
+
+    private class EmptyFileException extends Throwable {
     }
 }
