@@ -151,24 +151,5 @@ public class Bid
         void setup() {
         }
 
-        //this.clientID = clientID;
-       /* //Product product = (Product) session.createCriteria(Product.class).add(Restrictions.eq("name", "a")).uniqueResult();
-        Product product = (Product) session.get(Product.class, productID);
-
-        //commodity= (Commodity) session.merge(product);
-        //session.persist(commodity);
-        if (product != null) {
-            //commodity.name = product.getName();
-            //commodity.number = product.getNumber();
-            //commodity.price = product.getPrice();
-            //commodity.id = product.getId();
-            //commodity[1].price = product.getPrice();
-            if (message==null){
-                message ="";
-            }
-            message = String.format(message+" "+product.getPrice()+ " "+  product.getName()+"," );
-            //message= String.valueOf(0);
-        }*/
-
 
 }

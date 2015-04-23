@@ -80,6 +80,9 @@ public class LogIn
      Object onSuccess() {
 
             if (nextPageLink == null) {
+                if(loginId=="123"){
+                    return Pizza.class;
+                }
                 return Index.class;
             }
             else {
