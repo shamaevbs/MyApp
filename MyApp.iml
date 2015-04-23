@@ -143,6 +143,7 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.apache.tomcat:juli:6.0.30" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.apache.tomcat:annotations-api:6.0.30" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.apache.tapestry:tapestry-javadoc:5.3.7" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.tomcat:annotations-api:6.0.30" level="project" />
   </component>
 </module>
 

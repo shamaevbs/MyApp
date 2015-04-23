@@ -1,0 +1,31 @@
+<html t:type="layout" title="Log In"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+        >
+
+<form t:type="form" t:id="login">
+    <table>
+        <tr>
+            <th><t:label for="loginId"/>:</th>
+            <td><input t:type="TextField" t:id="loginId" size="15" maxLength="12" t:validate="required, maxLength=15"/></td>
+        </tr>
+        <tr>
+            <th><t:label for="password"/>:</th>
+            <td><input t:type="PasswordField" t:id="password" size="15" maxLength="12" t:validate="required, maxLength=15"/></td>
+        </tr>
+        <tr>
+            <th>&nbsp;</th>
+            <td class="buttons">
+                <input type="submit" value="Login"/>&nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div id="errors">
+                    <t:errors/>
+                </div>
+            </td>
+        </tr>
+    </table>
+</form>
+
+</html>
