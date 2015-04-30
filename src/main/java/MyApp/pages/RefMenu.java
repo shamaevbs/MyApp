@@ -20,6 +20,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.text.DateFormatSymbols;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -33,7 +36,7 @@ import java.util.List;
 public class RefMenu {
     @Property
     @Persist
-    private int testB;
+    private String testB;
 
 
 
@@ -59,6 +62,10 @@ public class RefMenu {
 
     public void onSuccess()
     {
+        Date currentDate = new Date();
+        SimpleDateFormat dateFormat = null;
+        dateFormat = new SimpleDateFormat("dd MMMM HH:mm:ss", myDateFormatSymbols);
+        testB=  dateFormat.format( currentDate );
         int numstr= 2, StringType, NumericType;
         try {
             int dotPos = file.getFileName().lastIndexOf(".");
@@ -218,4 +225,14 @@ public class RefMenu {
 
     private class EmptyFileException extends Throwable {
     }
+    private static DateFormatSymbols myDateFormatSymbols = new DateFormatSymbols(){
+
+        @Override
+        public String[] getMonths() {
+            return new String[]{"января", "февраля", "марта", "апреля", "мая", "июня",
+                    "июля", "августа", "сентября", "октября", "ноября", "декабря"};
+        }
+    };
+
+
 }

@@ -1,7 +1,32 @@
-<html t:type="layout" title="About MyApp"
+<html t:type="layout" title="Книга отзывов и предложений"
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
         >
 
-    <p>About MyApp application ...</p>
+    <p>Спасибо, что заказали пиццу у нас. Будем признательны за ваши отзывы и пожелания!</p>
+
+    <p>
+        <form t:id="commentform">
+
+            <div class="t-beaneditor">
+
+                <t:beaneditor t:id="comment" object="comment">[BeanEditForm here]
+
+                </t:beaneditor>
+            </div>
+
+            <div class="but-save">
+                <input t:type="submit" value="Save"  />
+            </div>
+
+
+        </form>
+    </p>
+
+    <!--
+    <p >
+        <t:grid source="comments" rowsPerPage= "10"   include= "name, time, call">
+        </t:grid>
+    </p>
+    -->
 
 </html>
