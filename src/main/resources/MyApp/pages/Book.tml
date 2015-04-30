@@ -3,7 +3,7 @@
         >
 
     <p>Спасибо, что заказали пиццу у нас. Будем признательны за ваши отзывы и пожелания!</p>
-
+    <!--
     <p>
         <form t:id="commentform">
 
@@ -20,6 +20,14 @@
 
 
         </form>
+    </p>
+    -->
+    <t:beaneditform object="comment1" submitlabel="message:submit-label"
+                    reorder="name, time, call" />
+
+    <p>
+    <t:grid source="comments" row= "comment" rowsPerPage= "10"     include= "name, call, time"   >
+    </t:grid>
     </p>
 
     <!--

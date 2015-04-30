@@ -1,6 +1,7 @@
 package MyApp.entities;
 
 import org.apache.tapestry5.beaneditor.NonVisual;
+import org.apache.tapestry5.beaneditor.Validate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,8 +21,34 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NonVisual
     public long id;
+    @Validate("required")
     public String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    @Validate("required")
     public String call;
+
+    public String getCall() {
+        return call;
+    }
+
+    public void setCall(String call) {
+        this.call = call;
+    }
+    @Validate("required")
     public  String time;
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
 }

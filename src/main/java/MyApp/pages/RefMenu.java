@@ -21,8 +21,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.DateFormatSymbols;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -62,10 +60,6 @@ public class RefMenu {
 
     public void onSuccess()
     {
-        Date currentDate = new Date();
-        SimpleDateFormat dateFormat = null;
-        dateFormat = new SimpleDateFormat("dd MMMM HH:mm:ss", myDateFormatSymbols);
-        testB=  dateFormat.format( currentDate );
         int numstr= 2, StringType, NumericType;
         try {
             int dotPos = file.getFileName().lastIndexOf(".");
