@@ -13,7 +13,7 @@
 
 
     <p>
-        <strong> In your basket: ${testB}</strong>
+        <strong>     ${testB}</strong>
     </p>
 
 </html>

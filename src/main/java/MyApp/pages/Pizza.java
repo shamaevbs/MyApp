@@ -14,13 +14,6 @@ import org.hibernate.criterion.Restrictions;
 import java.math.BigDecimal;
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * User: shamaev.bs
- * Date: 19.02.15
- * Time: 15:39
- * To change this template use File | Settings | File Templates.
- */
 public class Pizza {
     @Inject
     private Session session;
@@ -48,6 +41,9 @@ public class Pizza {
     @Persist
     private boolean emptyreq;
 
+    @InjectPage
+    LogIn logIn;
+
     @Persist
     private boolean showInfo;
 
@@ -60,7 +56,13 @@ public class Pizza {
                 .list();
     }
 
-
+    public Object onActivate() {
+        if (true) {
+            return logIn;
+        } else {
+            return null;  // keeps you on this page
+        }
+    }
 
 
 

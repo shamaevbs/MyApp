@@ -26,8 +26,11 @@
                     reorder="name, time, call" />
 
     <p>
-    <t:grid source="comments" row= "comment" rowsPerPage= "10"     include= "name, call, time"   >
+    <t:grid source="comments"        >
     </t:grid>
+    </p>
+    <p>
+        <strong>     ${testB}</strong>
     </p>
 
     <!--
