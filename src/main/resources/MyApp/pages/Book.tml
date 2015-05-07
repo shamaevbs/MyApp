@@ -1,43 +1,18 @@
-<html t:type="layout" title="Книга отзывов и предложений"
-      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
-        >
-
-    <p>Спасибо, что заказали пиццу у нас. Будем признательны за ваши отзывы и пожелания!</p>
-    <!--
-    <p>
-        <form t:id="commentform">
-
-            <div class="t-beaneditor">
-
-                <t:beaneditor t:id="comment" object="comment">[BeanEditForm here]
-
-                </t:beaneditor>
-            </div>
-
-            <div class="but-save">
-                <input t:type="submit" value="Save"  />
-            </div>
+<html t:type="layout" title="Create New Pizza"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
 
 
-        </form>
-    </p>
-    -->
-    <t:beaneditform object="comment1" submitlabel="message:submit-label"
-                    reorder="name, time, call" />
 
-    <p>
-    <t:grid source="comments"        >
+<t:beaneditform object="comment" submitlabel="message:submit-label"
+                reorder="  name, time, recall" />
+
+<p>
+    <t:grid source="comments" >
     </t:grid>
-    </p>
-    <p>
-        <strong>     ${testB}</strong>
-    </p>
+</p>
 
-    <!--
-    <p >
-        <t:grid source="comments" rowsPerPage= "10"   include= "name, time, call">
-        </t:grid>
-    </p>
-    -->
+
+
+
 
 </html>

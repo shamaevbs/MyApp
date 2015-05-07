@@ -8,15 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-/**
- * Created with IntelliJ IDEA.
- * User: shamaev.bs
- * Date: 30.04.15
- * Time: 12:58
- * To change this template use File | Settings | File Templates.
- */
+
 @Entity
 public class Comment {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NonVisual
@@ -32,14 +27,14 @@ public class Comment {
         this.name = name;
     }
     @Validate("required")
-    public String call;
+    public String recall;
 
-    public String getCall() {
-        return call;
+    public String getRecall() {
+        return recall;
     }
 
-    public void setCall(String call) {
-        this.call = call;
+    public void setRecall(String recall) {
+        this.recall = recall;
     }
     @Validate("required")
     public  String time;
@@ -49,6 +44,7 @@ public class Comment {
 
     public void setTime(String time) {
         this.time = time;
-    }
+        }
+
 
 }

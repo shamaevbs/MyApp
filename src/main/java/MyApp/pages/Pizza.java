@@ -41,8 +41,10 @@ public class Pizza {
     @Persist
     private boolean emptyreq;
 
+
     @InjectPage
     LogIn logIn;
+
 
     @Persist
     private boolean showInfo;
@@ -55,7 +57,7 @@ public class Pizza {
         return session.createCriteria(Product.class)
                 .list();
     }
-
+    /*
     public Object onActivate() {
         if (true) {
             return logIn;
@@ -63,7 +65,7 @@ public class Pizza {
             return null;  // keeps you on this page
         }
     }
-
+    */
 
 
     void setShowInfo(boolean show, boolean emptyCom) {
@@ -106,7 +108,7 @@ public class Pizza {
             Product product = (Product) session.get(Product.class, productID);
             Commodity commodity = new Commodity();
             commodity.name = product.getName();
-            commodity.number = product.getNumber();
+            //commodity.number = product.getNumber();
             commodity.price = product.getPrice();
             commodity.product = productID;
             commodity.client = webUser.getUser();
