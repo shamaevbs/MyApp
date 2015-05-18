@@ -9,7 +9,6 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
 
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
@@ -38,23 +37,15 @@ public class Book {
     @CommitAfter
     Object onSuccess()
     {
-        session.persist(comment);
-        List<Comment> commentLst = session.createCriteria(Comment.class)
-                .add(Restrictions.eq("time", ""))
-                .list();
-
         Date currentDate = new Date();
         SimpleDateFormat dateFormat = null;
         dateFormat = new SimpleDateFormat("dd MMMM HH:mm:ss", myDateFormatSymbols);
-        testB=String.valueOf(dateFormat.format( currentDate ));
-        for(Comment comment1 : commentLst) {
-            comment1.time=String.valueOf(dateFormat.format( currentDate ))  ;
-           session.persist(comment1);
-        }
+        comment.time=String.valueOf(dateFormat.format( currentDate ));
+        session.persist(comment);
 
-        /*session.save(comment1);
-        transaction.commit(); */
-        return index;
+
+
+        return Book.class;
     }
 
 
