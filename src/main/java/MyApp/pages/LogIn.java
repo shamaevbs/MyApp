@@ -2,6 +2,7 @@ package MyApp.pages;
 
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.Link;
+import org.apache.tapestry5.PersistenceConstants;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
@@ -32,6 +33,9 @@ public class LogIn
 
     @Inject
     private Logger logger;
+
+    @Property @Persist(PersistenceConstants.FLASH)
+    private String testB;
 
     @Inject
     private ComponentResources componentResources;
@@ -78,17 +82,28 @@ public class LogIn
             */
         }
      Object onSuccess() {
+        Class ret;
 
             if (nextPageLink == null) {
-                if(loginId=="123"){
-                    return Pizza.class;
+                //loginId= String.valueOf(loginIdField);
+                if(loginId.compareTo("123")==0){
+                    testB=loginId;
+                    ret =Index.class;
+
                 }
-                return Index.class;
+                else{
+                    testB=loginId;
+                    ret= Pizza.class;
+                }
+
             }
             else {
                 componentResources.discardPersistentFieldChanges();
-                return nextPageLink;
+                //return nextPageLink;
+                ret= Index.class;
             }
+         return ret;
+
 
         }
 

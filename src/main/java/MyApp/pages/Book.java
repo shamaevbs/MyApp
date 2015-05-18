@@ -7,7 +7,6 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
@@ -50,7 +49,7 @@ public class Book {
 
 
 
-    private void StartComment(){
+    /*private void StartComment(){
         Comment comment = new Comment();
         comment.name = "1";
         comment.time ="1" ;
@@ -58,13 +57,13 @@ public class Book {
         Transaction transaction = session.beginTransaction();
         session.persist(comment);
         transaction.commit();
-        /*
+
         Date currentDate = new Date();
         SimpleDateFormat dateFormat = null;
         dateFormat = new SimpleDateFormat("dd MMMM HH:mm:ss", myDateFormatSymbols);
         comment1.time=  dateFormat.format( currentDate );
         session.persist(comment1);
-        */
+
         Comment comment2 =(Comment) session.load(Comment.class, 1);
         Transaction transaction2 = session.beginTransaction();
         session.delete(comment2);
@@ -72,6 +71,7 @@ public class Book {
 
 
     }
+    */
 
 
     public List<Comment> getComments() {

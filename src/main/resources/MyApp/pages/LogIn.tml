@@ -27,5 +27,9 @@
         </tr>
     </table>
 </form>
+<p>
+    <strong>${testB}</strong>
+
+</p>
 
 </html>
