@@ -29,6 +29,7 @@ public class CreateAddress {
     Object onSuccess()
     {
        // session.persist(address);
+        product.basket="В корзину";
         session.persist(product);
         return index;
     }

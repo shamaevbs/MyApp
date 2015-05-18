@@ -11,7 +11,7 @@ import org.apache.tapestry5.corelib.components.TextField;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.slf4j.Logger;
 
-// @Secure
+//@Secure
 
 
 public class LogIn
@@ -35,10 +35,11 @@ public class LogIn
     private Logger logger;
 
     @Property @Persist(PersistenceConstants.FLASH)
-    private String testB;
+    private String testLog, testPas;
 
     @Inject
     private ComponentResources componentResources;
+
 
 
     //@Override
@@ -87,12 +88,14 @@ public class LogIn
             if (nextPageLink == null) {
                 //loginId= String.valueOf(loginIdField);
                 if(loginId.compareTo("admin")==0){
-                    testB=loginId;
+                    testLog=loginId;
+                    testPas= password;
                     ret =Index.class;
 
                 }
                 else{
-                    testB=loginId;
+                    testLog=loginId;
+                    testPas= password;
                     ret= Pizza.class;
                 }
 
@@ -102,7 +105,7 @@ public class LogIn
                 //return nextPageLink;
                 ret= Index.class;
             }
-         return ret;
+         return LogIn.class;
 
 
         }

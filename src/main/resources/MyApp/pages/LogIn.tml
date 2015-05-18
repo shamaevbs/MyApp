@@ -28,8 +28,10 @@
     </table>
 </form>
 <p>
-    <strong>${testB}</strong>
-
+    <strong>${testLog}</strong>
+</p>
+<p>
+    <strong>${testPas}</strong>
 </p>
 
 </html>

@@ -32,7 +32,7 @@ public class Product {
 
 
     public BigDecimal getPrice() {
-        return price;//.setScale(2,BigDecimal.ROUND_DOWN);
+        return price.setScale(2,BigDecimal.ROUND_DOWN);
     }
 
     public void setPrice(BigDecimal price) {

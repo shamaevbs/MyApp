@@ -30,6 +30,9 @@ public class Commodity {
     public long client;
     public long amt;
     public long app;
+    public BigDecimal getPrice() {
+        return price.setScale(2,BigDecimal.ROUND_DOWN);
+    }
 
     //public long amt;
 

@@ -7,7 +7,7 @@
      -->
 
     <t:beaneditform object="product" submitlabel="message:submit-label"
-                    reorder="price,  name, specification, basket" />
+                    reorder="price,  name, specification" />
 
 
 
