@@ -4,13 +4,16 @@
 
 
 <t:beaneditform object="comment" submitlabel="message:submit-label"
-                reorder="  name, time, recall" />
+       include="name, recall"          />
 
 <p>
     <t:grid source="comments" >
     </t:grid>
 </p>
+<p>
+    <strong>${testB}</strong>
 
+</p>
 
 
 

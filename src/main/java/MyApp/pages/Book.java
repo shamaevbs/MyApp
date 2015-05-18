@@ -2,14 +2,18 @@ package MyApp.pages;
 
 
 import MyApp.entities.Comment;
+import org.apache.tapestry5.PersistenceConstants;
 import org.apache.tapestry5.annotations.InjectPage;
+import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 import java.text.DateFormatSymbols;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,6 +24,9 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class Book {
+    @Property @Persist(PersistenceConstants.FLASH)
+    private String testB;
+
     @Property
     private Comment comment;
 
@@ -32,6 +39,21 @@ public class Book {
     Object onSuccess()
     {
         session.persist(comment);
+        List<Comment> commentLst = session.createCriteria(Comment.class)
+                .add(Restrictions.eq("time", ""))
+                .list();
+
+        Date currentDate = new Date();
+        SimpleDateFormat dateFormat = null;
+        dateFormat = new SimpleDateFormat("dd MMMM HH:mm:ss", myDateFormatSymbols);
+        testB=String.valueOf(dateFormat.format( currentDate ));
+        for(Comment comment1 : commentLst) {
+            comment1.time=String.valueOf(dateFormat.format( currentDate ))  ;
+           session.persist(comment1);
+        }
+
+        /*session.save(comment1);
+        transaction.commit(); */
         return index;
     }
 
@@ -49,35 +71,8 @@ public class Book {
 
 
 
-    /*private void StartComment(){
-        Comment comment = new Comment();
-        comment.name = "1";
-        comment.time ="1" ;
-        comment.recall ="1" ;
-        Transaction transaction = session.beginTransaction();
-        session.persist(comment);
-        transaction.commit();
-
-        Date currentDate = new Date();
-        SimpleDateFormat dateFormat = null;
-        dateFormat = new SimpleDateFormat("dd MMMM HH:mm:ss", myDateFormatSymbols);
-        comment1.time=  dateFormat.format( currentDate );
-        session.persist(comment1);
-
-        Comment comment2 =(Comment) session.load(Comment.class, 1);
-        Transaction transaction2 = session.beginTransaction();
-        session.delete(comment2);
-        transaction.commit();
-
-
-    }
-    */
-
-
     public List<Comment> getComments() {
-
-        session.createCriteria(Comment.class).list();
-        return new ArrayList <Comment>();
+        return session.createCriteria(Comment.class).list();
     }
 
 }

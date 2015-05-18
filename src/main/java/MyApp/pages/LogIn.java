@@ -86,7 +86,7 @@ public class LogIn
 
             if (nextPageLink == null) {
                 //loginId= String.valueOf(loginIdField);
-                if(loginId.compareTo("123")==0){
+                if(loginId.compareTo("admin")==0){
                     testB=loginId;
                     ret =Index.class;
 

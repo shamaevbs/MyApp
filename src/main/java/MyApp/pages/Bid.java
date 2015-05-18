@@ -91,7 +91,7 @@ public class Bid
             cost1 = cost1.add(commodity.price.multiply(amt));
             //cost1 += commodity.price * commodity.amt;
         }
-        cost=cost1.setScale(2,BigDecimal.ROUND_FLOOR);;
+        cost=cost1.setScale(2,BigDecimal.ROUND_FLOOR);
         ind= 1;
         return session.createCriteria(Commodity.class)
                 .add(Restrictions.eq("client", webUser.getUser()))
