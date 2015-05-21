@@ -40,6 +40,7 @@
             <artifactId>tapestry-yuicompressor</artifactId>
             <version>${tapestry-release-version}</version>
         </dependency>
+
 	<dependency>
         	<groupId>org.hsqldb</groupId>
         	<artifactId>hsqldb</artifactId>
@@ -65,6 +66,8 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
             <version>${testng-release-version}</version>
             <scope>test</scope>
         </dependency>
+
+
 
         <dependency>
             <groupId>org.easymock</groupId>
@@ -96,6 +99,8 @@ of testing facilities designed for use with TestNG (http://testng.org/), so it's
             <version>${tapestry-release-version}</version>
             <scope>provided</scope>
         </dependency>
+
+
 
     </dependencies>
     <build>
