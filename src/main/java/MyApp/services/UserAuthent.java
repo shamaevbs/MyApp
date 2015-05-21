@@ -7,7 +7,7 @@ package MyApp.services;
  * Time: 15:18
  * To change this template use File | Settings | File Templates.
  */
-public interface UserAuthenticator {
+public interface UserAuthent {
 
-    boolean isvalid(String loginId, String password);
+   public boolean isvalid(String loginId, String password);
 }

@@ -1,6 +1,7 @@
 package MyApp.pages;
 
-import MyApp.services.UserAuthenticator;
+
+import MyApp.services.UserAuthent;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.Link;
 import org.apache.tapestry5.PersistenceConstants;
@@ -33,7 +34,7 @@ public class LogIn
     private Link nextPageLink;
 
     @Inject
-    private UserAuthenticator authenticator;
+    private UserAuthent authent;
 
     @Inject
     private Logger logger;
@@ -71,7 +72,7 @@ public class LogIn
 
             try {
                 // Authenticate the user
-                if (!authenticator.isvalid(loginId, password)) {
+                if (!authent.isvalid(loginId, password)) {
                     // record an error, and thereby prevent Tapestry from emitting a "success" event
                     form.recordError("Invalid user name or password.");
                 }
