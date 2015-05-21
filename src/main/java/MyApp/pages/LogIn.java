@@ -1,5 +1,6 @@
 package MyApp.pages;
 
+import MyApp.services.UserAuthenticator;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.Link;
 import org.apache.tapestry5.PersistenceConstants;
@@ -32,10 +33,15 @@ public class LogIn
     private Link nextPageLink;
 
     @Inject
+    private UserAuthenticator authenticator;
+
+    @Inject
     private Logger logger;
 
     @Property @Persist(PersistenceConstants.FLASH)
     private String testLog, testPas;
+
+
 
     @Inject
     private ComponentResources componentResources;
@@ -56,33 +62,35 @@ public class LogIn
     }
 
     void onValidateFromLogin() {
-            testLog=loginId;
-            form.recordError("Error");
+
             if (form.getHasErrors()) {
                 // We get here only if a server-side validator detected an error.
                 return;
 
             }
-            /***
+
             try {
                 // Authenticate the user
-
-                User user = securityFinderService.authenticateUser(loginId, password);
+                if (!authenticator.isvalid(loginId, password)) {
+                    // record an error, and thereby prevent Tapestry from emitting a "success" event
+                    form.recordError("Invalid user name or password.");
+                }
+                /*User user = securityFinderService.authenticateUser(loginId, password);
 
                 // Store the user in the Visit
 
                 setVisit(new Visit(user));
-                logger.info(user.getLoginId() + " has logged in.");
+                logger.info(user.getLoginId() + " has logged in.");*/
             }
-            catch (BusinessException e) {
+            /*catch (BusinessException e) {
                 form.recordError(loginIdField, e.getLocalizedMessage());
-            }
+            }*/
             catch (Exception e) {
-                logger.error("Could not log in.  Stack trace follows...");
-                logger.error(ExceptionUtil.printStackTrace(e));
-                form.recordError(getMessages().get("login_problem"));
+                /*logger.error("Could not log in.  Stack trace follows...");
+                logger.error(ExceptionUtil.printStackTrace(e));*/
+                form.recordError("login_problem");
             }
-            */
+
         }
      Object onSuccess() {
         logger.error("Error on Succes");
