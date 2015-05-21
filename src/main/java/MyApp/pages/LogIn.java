@@ -56,10 +56,12 @@ public class LogIn
     }
 
     void onValidateFromLogin() {
-
+            testLog=loginId;
+            form.recordError("Error");
             if (form.getHasErrors()) {
                 // We get here only if a server-side validator detected an error.
                 return;
+
             }
             /***
             try {
@@ -83,19 +85,17 @@ public class LogIn
             */
         }
      Object onSuccess() {
+        logger.error("Error on Succes");
         Class ret;
 
             if (nextPageLink == null) {
                 //loginId= String.valueOf(loginIdField);
                 if(loginId.compareTo("admin")==0){
-                    testLog=loginId;
-                    testPas= password;
                     ret =Index.class;
 
                 }
                 else{
-                    testLog=loginId;
-                    testPas= password;
+
                     ret= Pizza.class;
                 }
 

@@ -19,7 +19,28 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NonVisual
     public Long id;
+    public Long getId(){
+        return id;
+    }
 
-    public String login;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String loginId;
+    public String getLoginID(){
+        return loginId;
+    }
+
+    public void setLoginId(String loginId) {
+        this.loginId = loginId;
+    }
     public String password;
+    public String getPassword(){
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

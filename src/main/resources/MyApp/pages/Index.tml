@@ -16,9 +16,6 @@
             <li><t:pagelink page="RefMenu">Refresh menu</t:pagelink></li>
         </ul>
 
-        <ul>
-            <li><t:pageLink page="LogIn">Log In</t:pageLink></li>
-        </ul>
 
 
 

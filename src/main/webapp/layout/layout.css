@@ -566,6 +566,15 @@ tbody {
     background-color: #ffffff;
 }
 
+.LogIn{
+    position: fixed;
+    font-size: 17px;
+    margin-left: 102px;
+    color: rgb(178, 58, 58);
+    text-align: -webkit-auto;
+    right: 15px;
+}
+
 /*   */
 
 
