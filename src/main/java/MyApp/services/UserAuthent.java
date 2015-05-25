@@ -9,5 +9,5 @@ package MyApp.services;
  */
 public interface UserAuthent {
 
-   public boolean isvalid(String loginId, String password);
+   public boolean valid(String loginId, String password);
 }

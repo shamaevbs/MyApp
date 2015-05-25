@@ -1,5 +1,7 @@
 <html t:type="layout" title="Book"
-      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+        xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+        xmlns:p="tapestry:parameter"
+>
 
 
 
@@ -8,8 +10,16 @@
 
 <p>
     <t:grid source="comments" >
+        <p:nameHeader>
+            Name
+        </p:nameHeader>
+        <p:recallHeader>
+            Recall
+        </p:recallHeader>
     </t:grid>
 </p>
+
+
 <p>
     <strong>${testB}</strong>
 

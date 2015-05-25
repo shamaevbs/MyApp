@@ -18,7 +18,7 @@ public class UserAuthentImpl implements UserAuthent {
     @Inject
 
     private Session session;
-    public boolean isvalid(String loginId, String password){
+    public boolean valid(String loginId, String password){
         List<User> usersLst = session.createCriteria(User.class)
                 .add(Restrictions.eq("loginId", loginId))
                 .add(Restrictions.eq("password", password  ))

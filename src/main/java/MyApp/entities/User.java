@@ -28,7 +28,7 @@ public class User {
     }
 
     public String loginId;
-    public String getLoginID(){
+    public String getLoginId(){
         return loginId;
     }
 

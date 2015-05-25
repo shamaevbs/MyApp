@@ -66,13 +66,14 @@ public class LogIn
 
             if (form.getHasErrors()) {
                 // We get here only if a server-side validator detected an error.
+
                 return;
 
             }
 
             try {
                 // Authenticate the user
-                if (!authent.isvalid(loginId, password)) {
+                if (!authent.valid(loginId, password)) {
                     // record an error, and thereby prevent Tapestry from emitting a "success" event
                     form.recordError("Invalid user name or password.");
                 }
