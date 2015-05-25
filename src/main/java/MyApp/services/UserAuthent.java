@@ -1,5 +1,7 @@
 package MyApp.services;
 
+import MyApp.entities.User;
+
 /**
  * Created with IntelliJ IDEA.
  * User: shamaev.bs
@@ -9,5 +11,6 @@ package MyApp.services;
  */
 public interface UserAuthent {
 
-   public boolean valid(String loginId, String password);
+   public boolean isValid(String loginId, String password);
+   public User authenticateUser (String loginId, String password);
 }

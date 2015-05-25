@@ -1,6 +1,7 @@
 package MyApp.pages;
 
 
+import MyApp.entities.User;
 import MyApp.services.UserAuthent;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.Link;
@@ -73,16 +74,17 @@ public class LogIn
 
             try {
                 // Authenticate the user
-                if (!authent.valid(loginId, password)) {
+                if (!authent.isValid(loginId, password)) {
+                    throw  new BadLogIOrPasException();
                     // record an error, and thereby prevent Tapestry from emitting a "success" event
-                    form.recordError("Invalid user name or password.");
                 }
-                /*User user = securityFinderService.authenticateUser(loginId, password);
+
+                User user = authent.authenticateUser(loginId, password);
 
                 // Store the user in the Visit
 
                 setVisit(new Visit(user));
-                logger.info(user.getLoginId() + " has logged in.");*/
+                //logger.info(user.getLoginId() + " has logged in.");*/
             }
             /*catch (BusinessException e) {
                 form.recordError(loginIdField, e.getLocalizedMessage());
@@ -91,6 +93,10 @@ public class LogIn
                 /*logger.error("Could not log in.  Stack trace follows...");
                 logger.error(ExceptionUtil.printStackTrace(e));*/
                 form.recordError("login_problem");
+            }
+            catch (BadLogIOrPasException e ){
+                String error ="Invalid user name or password";
+                form.recordError(error);
             }
 
         }
@@ -120,6 +126,7 @@ public class LogIn
 
         }
 
-
-
+    private class BadLogIOrPasException extends Throwable {
+    }
 }
+

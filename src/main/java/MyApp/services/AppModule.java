@@ -22,6 +22,7 @@ public class AppModule
     public static void bind(ServiceBinder binder)
     {
         binder.bind(WebUser.class, WebUserImpl.class);
+        binder.bind(UserAuthent.class);
         // binder.bind(MyServiceInterface.class, MyServiceImpl.class);
 
         // Make bind() calls on the binder object to define most IoC services.

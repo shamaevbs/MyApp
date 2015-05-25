@@ -18,7 +18,7 @@ public class UserAuthentImpl implements UserAuthent {
     @Inject
 
     private Session session;
-    public boolean valid(String loginId, String password){
+    public boolean isValid(String loginId, String password){
         List<User> usersLst = session.createCriteria(User.class)
                 .add(Restrictions.eq("loginId", loginId))
                 .add(Restrictions.eq("password", password  ))
@@ -31,4 +31,8 @@ public class UserAuthentImpl implements UserAuthent {
         }
     }
 
+    public User authenticateUser(String loginId, String password) {
+        User user =(User) session.get(User.class, loginId);
+        return user;
+    }
 }
