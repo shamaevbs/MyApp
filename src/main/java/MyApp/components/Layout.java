@@ -1,12 +1,9 @@
 package MyApp.components;
 
-import org.apache.tapestry5.BindingConstants;
-import org.apache.tapestry5.Block;
-import org.apache.tapestry5.ComponentResources;
-import org.apache.tapestry5.SymbolConstants;
-import org.apache.tapestry5.annotations.Import;
-import org.apache.tapestry5.annotations.Parameter;
-import org.apache.tapestry5.annotations.Property;
+import MyApp.pages.LogIn;
+import MyApp.state.Visit;
+import org.apache.tapestry5.*;
+import org.apache.tapestry5.annotations.*;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.Symbol;
 
@@ -23,6 +20,7 @@ public class Layout
     @Parameter(required = true, defaultPrefix = BindingConstants.LITERAL)
     private String title;
 
+
     @Property
     private String pageName;
 
@@ -37,15 +35,28 @@ public class Layout
     @Inject
     private ComponentResources resources;
 
+
+
     @Property
     @Inject
     @Symbol(SymbolConstants.APPLICATION_VERSION)
     private String appVersion;
 
 
+    @InjectPage
+    LogIn logIn;
+
+    private Visit visit;
+
+    @Property
+    @Persist(PersistenceConstants.FLASH)
+    private String Log;
+
 
     public String getClassForPageName()
     {
+
+
         return resources.getPageName().equalsIgnoreCase(pageName)
                 ? "current_page_item"
                 : null;
@@ -56,5 +67,15 @@ public class Layout
     {
         return new String[]{"Pizza","News",  "About",  "Book", "Bid"};
     }
+    @BeginRender
+    void SetLog(){
+        if(logIn.isVisitExists()){
+            Log="Log Out";
+        }else{
+            Log= "Log In";
+        }
+    }
+
+
 
 }

@@ -20,6 +20,12 @@ Description: A Web 2.0 design with fluid width suitable for blogs and small webs
     <body>
         <!-- start header -->
         <div  class="header">
+            <a href="/MyApp/login">
+                <div class="LogIn">
+                    ${Log}
+                </div>
+            </a>
+
             <div class="logo">
                 <h1 >
                 <a href="/MyApp/">
@@ -43,9 +49,7 @@ Description: A Web 2.0 design with fluid width suitable for blogs and small webs
                 </div>
             </div>
 
-            <a href="/MyApp/login">
-                <div class="LogIn">LogIn</div>
-            </a>
+
             <a href="/MyApp/bid">
                 <div class="basket-pic"></div>
             </a>

@@ -16,7 +16,6 @@ import java.util.List;
  */
 public class UserAuthentImpl implements UserAuthent {
     @Inject
-
     private Session session;
     public boolean isValid(String loginId, String password){
         List<User> usersLst = session.createCriteria(User.class)
@@ -32,7 +31,19 @@ public class UserAuthentImpl implements UserAuthent {
     }
 
     public User authenticateUser(String loginId, String password) {
-        User user =(User) session.get(User.class, loginId);
+        User user = null;
+        List<User> usersLst = session.createCriteria(User.class)
+                .add(Restrictions.eq("loginId", loginId))
+                .add(Restrictions.eq("password", password  ))
+                .list();
+        if (!usersLst.isEmpty()){
+            for(User user1 : usersLst) {
+                user = user1;
+            }
         return user;
+        }
+        else{
+            return null;
+        }
     }
 }

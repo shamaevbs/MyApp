@@ -42,8 +42,6 @@ public class Pizza {
     private boolean emptyreq;
 
 
-    @InjectPage
-    LogIn logIn;
 
 
     @Persist
@@ -52,8 +50,11 @@ public class Pizza {
     @Inject
     private JavaScriptSupport javaScriptSupport;
 
+
+
     public List<Product> getProducts()
     {
+
         return session.createCriteria(Product.class)
                 .list();
     }
@@ -89,6 +90,7 @@ public class Pizza {
 
     @OnEvent(component = "makeBasket")
      Object makeBasket( long value){
+
         productID = value;
         ind = 1;
         List<Commodity> commodityLst = session.createCriteria(Commodity.class)

@@ -1,0 +1,31 @@
+<html t:type="layout" title="Registration"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+        >
+<p>
+<form t:id="registrationform">
+    <t:errors/>
+
+    <div class="t-beaneditor">
+
+        <t:beaneditor t:id="registration" object="user"
+           reorder="loginId, password, password2, mail, name, house, access, apartment, phone">[BeanEditForm here]
+
+        </t:beaneditor>
+    </div>
+
+    <div class="but-save">
+        <input t:type="submit" value="Save"  t:mixins="confirm" t:message="${message:confirm}" />
+        <!--
+        <a t:type="eventlink" t:event="refresh" href="#">Refresh</a>&nbsp;
+        -->
+    </div>
+
+</form>
+</p>
+    <!--
+            <t:beaneditform object="user" submitlabel="message:submit-label"
+                reorder="loginId, password, password2, mail, name, house, access, apartment, phone"                />
+    -->
+
+
+    </html>

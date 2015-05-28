@@ -3,6 +3,7 @@ package MyApp.pages;
 
 import MyApp.entities.User;
 import MyApp.services.UserAuthent;
+import MyApp.state.Visit;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.Link;
 import org.apache.tapestry5.PersistenceConstants;
@@ -14,10 +15,11 @@ import org.apache.tapestry5.corelib.components.TextField;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.slf4j.Logger;
 
+
 //@Secure
 
 
-public class LogIn
+public class LogIn  extends SimpleBasePage
 {
     @Property
     private String loginId;
@@ -81,7 +83,7 @@ public class LogIn
 
                 User user = authent.authenticateUser(loginId, password);
 
-                // Store the user in the Visit
+                // Store the    user in the Visit
 
                 setVisit(new Visit(user));
                 //logger.info(user.getLoginId() + " has logged in.");*/
@@ -89,11 +91,10 @@ public class LogIn
             /*catch (BusinessException e) {
                 form.recordError(loginIdField, e.getLocalizedMessage());
             }*/
-            catch (Exception e) {
-                /*logger.error("Could not log in.  Stack trace follows...");
-                logger.error(ExceptionUtil.printStackTrace(e));*/
+            /*catch (Exception e) {
+
                 form.recordError("login_problem");
-            }
+            }*/
             catch (BadLogIOrPasException e ){
                 String error ="Invalid user name or password";
                 form.recordError(error);
@@ -101,32 +102,18 @@ public class LogIn
 
         }
      Object onSuccess() {
-        logger.error("Error on Succes");
-        Class ret;
 
-            if (nextPageLink == null) {
-                //loginId= String.valueOf(loginIdField);
-                if(loginId.compareTo("admin")==0){
-                    ret =Index.class;
 
-                }
-                else{
-
-                    ret= Pizza.class;
-                }
-
-            }
-            else {
-                componentResources.discardPersistentFieldChanges();
-                //return nextPageLink;
-                ret= Index.class;
-            }
-         return LogIn.class;
+         return Pizza.class;
 
 
         }
 
     private class BadLogIOrPasException extends Throwable {
+    }
+
+    Object onGoReg(){
+       return Registration.class;
     }
 }
 

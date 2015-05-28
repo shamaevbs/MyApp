@@ -16,6 +16,7 @@
             <th>&nbsp;</th>
             <td class="buttons">
                 <input type="submit" value="Login"/>&nbsp;
+                <a t:type="eventlink" t:event="GoReg" href="#">Registration</a>
             </td>
         </tr>
         <tr>
